@@ -1,8 +1,8 @@
-interface AppI {
+interface IApp {
   str: string
 }
 
-class App implements AppI {
+class App implements IApp {
   str;
 
   constructor() {
