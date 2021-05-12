@@ -9,7 +9,7 @@ interface Route {
   cb: RouteCb;
 }
 
-interface RouterOption {
+interface RouterProp {
   mode: string;
   root: string;
 }
@@ -25,16 +25,15 @@ interface Router {
 class MainRouter implements Router {
   routes: Array<Route> = [];
 
-  mode = '';
+  mode = 'hash';
 
   root = '/';
 
   intervalId;
 
-  current = '';
+  current = '--';
 
-  constructor(options: RouterOption) {
-    this.mode = 'history';
+  constructor(options: RouterProp) {
     if (options.mode) this.mode = options.mode;
     if (options.root) this.root = options.root;
     this.intervalId = this.listen();
@@ -93,7 +92,10 @@ class MainRouter implements Router {
   };
 
   interval = () => {
-    if (this.current === this.getFragment()) return;
+    if (this.current === this.getFragment()) {
+      return;
+    }
+
     this.current = this.getFragment();
 
     this.routes.some((route) => {
