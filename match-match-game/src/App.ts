@@ -1,4 +1,8 @@
+import s from './App.scss';
 import Router from './shared/services/Router';
+import AboutGame from './pages/AboutGame/AboutGame';
+import RouteConstants from './shared/constants/route.constants';
+import Header from './shared/companents/Header/Header';
 
 interface AppProp {
   router: Router
@@ -6,64 +10,51 @@ interface AppProp {
 
 interface IApp {
   router: Router;
+  appTag: HTMLElement;
 }
 
 class App implements IApp {
   router;
 
+  appTag;
+
   constructor({ router }: AppProp) {
     this.router = router;
+    this.appTag = this.createAppTag();
     this.initRouter();
   }
+
+  createAppTag = () => {
+    const appTag = document.createElement('div');
+
+    appTag.classList.add(s.app);
+    appTag.append(new AboutGame({
+      header: new Header().render(),
+    }).render());
+
+    return appTag;
+  };
 
   initRouter = () => {
     this.router
       .add('/', () => {
-        const div = document.createElement('div');
-        const about = document.createElement('a');
-        about.href = '/#/about';
-        about.innerText = 'about';
-
-        const best = document.createElement('a');
-        best.href = '/#/best';
-        best.innerText = 'best';
-
-        div.append(about, best);
-        document.body.append(div);
       })
-      .add('about', () => {
-        document.body.innerText = 'this is about';
-        const best = document.createElement('a');
-        best.href = '/#/';
-        best.innerText = 'root';
-        document.body.append(best);
+      .add(RouteConstants.ABOUT, () => {
+        console.log('about');
+        this.appTag.replaceWith(new AboutGame({
+          header: new Header().render(),
+        }).render());
       })
       .add('best', () => {
-        document.body.innerText = 'best';
-        document.body.innerText = 'this is about';
-        const best = document.createElement('a');
-        best.href = '/#/';
-        best.innerText = 'root';
-        document.body.append(best);
+        console.log('best');
       })
-      .add('/settings', () => {
-        document.body.innerText = 'setting';
+      .add('settings', () => {
+        console.log('sett');
+        this.appTag.replaceWith('settings');
       });
   };
 
-  render = () => {
-    const div = document.createElement('div');
-    const about = document.createElement('a');
-    about.href = '/#/about';
-    about.innerText = 'about';
-
-    const best = document.createElement('a');
-    best.href = '/#/best';
-    best.innerText = 'best';
-
-    div.append(about, best);
-    return div;
-  };
+  render = () => this.appTag;
 }
 
 export default App;

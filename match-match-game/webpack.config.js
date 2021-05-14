@@ -15,10 +15,21 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-modules-typescript-loader' },
+          { loader: 'css-loader', options: { modules: true } },
+          { loader: 'sass-loader' },
+        ],
+      },
     ],
   },
+  plugins: [
+  ],
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
