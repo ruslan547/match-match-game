@@ -1,20 +1,14 @@
-import NavButton from '../NavButton/NavButton';
-import s from './Header.scss';
+import Logo from '../Logo/Logo';
+import Nav from '../Nav/Nav';
+import './Header.scss';
 
-export interface IHeader {
-
-}
-
-class Header implements IHeader {
+class Header {
   render = () => {
     const headerTag = document.createElement('div');
-    headerTag.classList.add(s.header);
 
-    headerTag.append(new NavButton({
-      text: 'About',
-      img: '../../assets/img/question.svg',
-      url: '/#/settings',
-    }).render());
+    headerTag.classList.add('header');
+
+    headerTag.append(new Logo().render(), new Nav().render());
 
     return headerTag;
   };

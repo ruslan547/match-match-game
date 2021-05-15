@@ -2,11 +2,11 @@ enum RouteConstants {
   ROOT = '/',
   ABOUT = 'about',
   BEST = 'best',
-  SETTING = 'setting',
+  SETTING = 'settings',
   HASH = 'hash',
   HASH_ABOUT = '/#/about',
   HASH_BEST = '/#/best',
-  HASH_SETTING = '/#/setting',
+  HASH_SETTING = '/#/settings',
 }
 
 export default RouteConstants;

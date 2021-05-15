@@ -1,5 +1,5 @@
-import s from './App.scss';
-import Router from './shared/services/Router';
+import './App.scss';
+import Router from './shared/services/router';
 import AboutGame from './pages/AboutGame/AboutGame';
 import RouteConstants from './shared/constants/route.constants';
 import Header from './shared/companents/Header/Header';
@@ -8,31 +8,29 @@ interface AppProp {
   router: Router
 }
 
-interface IApp {
-  router: Router;
-  appTag: HTMLElement;
-}
+class App {
+  private router;
 
-class App implements IApp {
-  router;
-
-  appTag;
+  private content: HTMLElement;
 
   constructor({ router }: AppProp) {
     this.router = router;
-    this.appTag = this.createAppTag();
+    this.content = document.createElement('div');
     this.initRouter();
   }
 
-  createAppTag = () => {
-    const appTag = document.createElement('div');
+  render = () => {
+    const app = document.createElement('div');
+    this.content = document.createElement('div');
 
-    appTag.classList.add(s.app);
-    appTag.append(new AboutGame({
-      header: new Header().render(),
-    }).render());
+    app.classList.add('app');
+    this.content.classList.add('content');
 
-    return appTag;
+    this.content.append(new AboutGame().render());
+    app.append(new Header().render());
+    app.append(this.content);
+
+    return app;
   };
 
   initRouter = () => {
@@ -41,20 +39,16 @@ class App implements IApp {
       })
       .add(RouteConstants.ABOUT, () => {
         console.log('about');
-        this.appTag.replaceWith(new AboutGame({
-          header: new Header().render(),
-        }).render());
+        this.content?.firstChild?.replaceWith(new AboutGame().render());
       })
       .add('best', () => {
         console.log('best');
       })
       .add('settings', () => {
         console.log('sett');
-        this.appTag.replaceWith('settings');
+        this.content?.firstChild?.replaceWith('settings');
       });
   };
-
-  render = () => this.appTag;
 }
 
 export default App;

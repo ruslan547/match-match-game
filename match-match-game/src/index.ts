@@ -1,6 +1,6 @@
 import App from './App';
 import RouteConstants from './shared/constants/route.constants';
-import Router from './shared/services/Router';
+import Router from './shared/services/router';
 
 const router = new Router({
   mode: RouteConstants.HASH,

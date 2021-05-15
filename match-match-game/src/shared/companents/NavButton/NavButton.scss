@@ -1,8 +1,24 @@
-@import '../../../App.scss';
+@import '../../../index.scss';
 
 .nav-link {
   width: 96px;
   height: 64px;
-  display: flex;
-  background-color: green;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-gap: 4px;
+  justify-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  text-decoration: none;
+  color: $simple-color;
+
+  &__img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.active {
+  background-color: $active-color;
 }
