@@ -1,42 +1,37 @@
 import './App.scss';
-import Router from './shared/services/router';
+import Router from './shared/services/router.service';
 import AboutGame from './pages/AboutGame/AboutGame';
 import RouteConstants from './shared/constants/route.constants';
 import Header from './shared/companents/Header/Header';
+import { IComponent } from './shared/interfaces';
+import TagConstants from './shared/constants/tag.constants';
 
-interface AppProp {
-  router: Router
-}
-
-class App {
-  private router;
-
+class App implements IComponent {
   private content: HTMLElement;
 
-  constructor({ router }: AppProp) {
-    this.router = router;
-    this.content = document.createElement('div');
+  private app: HTMLElement;
+
+  constructor() {
+    this.app = document.createElement(TagConstants.DIV);
+    this.content = document.createElement(TagConstants.DIV);
     this.initRouter();
   }
 
-  render = () => {
-    const app = document.createElement('div');
-    this.content = document.createElement('div');
-
-    app.classList.add('app');
+  public render = () => {
+    this.app.classList.add('app');
     this.content.classList.add('content');
-
     this.content.append(new AboutGame().render());
-    app.append(new Header().render());
-    app.append(this.content);
+    this.app.append(new Header().render());
+    this.app.append(this.content);
 
-    return app;
+    return this.app;
   };
 
-  initRouter = () => {
-    this.router
-      .add('/', () => {
-      })
+  private initRouter = () => {
+    new Router({
+      mode: RouteConstants.HASH,
+      root: RouteConstants.HASH_ABOUT,
+    })
       .add(RouteConstants.ABOUT, () => {
         console.log('about');
         this.content?.firstChild?.replaceWith(new AboutGame().render());

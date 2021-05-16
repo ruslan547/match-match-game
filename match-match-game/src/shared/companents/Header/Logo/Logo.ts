@@ -1,5 +1,5 @@
-import ContentConstants from '../../constants/content.constants';
-import TagConstants from '../../constants/tag.constants';
+import ContentConstants from '../../../constants/content.constants';
+import TagConstants from '../../../constants/tag.constants';
 import './Logo.scss';
 
 class Logo {

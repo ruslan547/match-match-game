@@ -1,11 +1,11 @@
-import ContentConstants from '../../constants/content.constants';
+import ContentConstants from '../../../constants/content.constants';
 import './Nav.scss';
-import TagConstants from '../../constants/tag.constants';
+import TagConstants from '../../../constants/tag.constants';
 import NavLink from '../NavButton/NavButton';
-import about from '../../../assets/img/about.svg';
-import star from '../../../assets/img/star.svg';
-import set from '../../../assets/img/set.svg';
-import RouteConstants from '../../constants/route.constants';
+import about from '../../../../assets/img/about.svg';
+import star from '../../../../assets/img/star.svg';
+import setting from '../../../../assets/img/set.svg';
+import RouteConstants from '../../../constants/route.constants';
 
 class Nav {
   render = () => {
@@ -30,7 +30,7 @@ class Nav {
 
     links.item(2)?.append(new NavLink({
       text: ContentConstants.GAME_SETTINGS,
-      img: set,
+      img: setting,
       url: RouteConstants.HASH_SETTING,
     }).render());
 

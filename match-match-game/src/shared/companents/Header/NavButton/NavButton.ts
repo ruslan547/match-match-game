@@ -1,5 +1,5 @@
-import { page } from '../../actions/page';
-import { store } from '../../store/store';
+import { page } from '../../../services/store/actions';
+import { store } from '../../../services/store/store.service';
 import './NavButton.scss';
 
 interface NavButtonProp {
@@ -33,7 +33,7 @@ class NavLink implements INavLink {
   private activate = (link: HTMLElement) => {
     const state = store.getState();
 
-    if (state.page === this.curPage) {
+    if (state.page === this.url) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
@@ -55,7 +55,7 @@ class NavLink implements INavLink {
     navLinkTag.append(imgTag, textTag);
 
     navLinkTag.addEventListener('click', () => {
-      store.dispatch(page(this.curPage));
+      store.dispatch(page(this.url));
     });
 
     store.subscribe(() => {

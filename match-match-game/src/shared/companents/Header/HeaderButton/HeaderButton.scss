@@ -1,0 +1,15 @@
+@import './../../../../index.scss';
+
+.header-btn {
+  cursor: pointer;
+  width: 207px;
+  background-color: $simple-color;
+  text-transform: uppercase;
+  color: $main-color;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  font-size: 14px;
+}

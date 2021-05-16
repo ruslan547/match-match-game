@@ -4,6 +4,7 @@ enum TagConstants {
   UL = 'ul',
   LI = 'li',
   A = 'a',
+  BUTTON = 'button',
 }
 
 export default TagConstants;
