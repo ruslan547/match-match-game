@@ -1,13 +1,20 @@
+import TagConstants from '../../shared/constants/tag.constants';
+import ContentConstants from '../../shared/constants/content.constants';
 import './AboutGame.scss';
+import RulesList from './RulesList/RulesList';
 
 class AboutGame {
+  private about = document.createElement(TagConstants.DIV);
+
   render = () => {
-    const aboutTag = document.createElement('div');
+    const aboutTitle = document.createElement(TagConstants.H3);
+    aboutTitle.textContent = ContentConstants.HOW_TO_PLAY;
+    aboutTitle.classList.add('about-title');
 
-    aboutTag.classList.add('about');
-    aboutTag.append('about');
+    this.about.classList.add('about');
+    this.about.append(aboutTitle, new RulesList().render());
 
-    return aboutTag;
+    return this.about;
   };
 }
 
