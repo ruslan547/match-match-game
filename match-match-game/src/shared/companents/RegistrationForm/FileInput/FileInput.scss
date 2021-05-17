@@ -1,0 +1,15 @@
+@import './../../../../index.scss';
+
+.file-input-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-input-img {
+  cursor: pointer;
+}

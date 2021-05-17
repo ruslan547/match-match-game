@@ -8,7 +8,14 @@ enum TagConstants {
   H1 = 'h1',
   H2 = 'h2',
   H3 = 'h3',
-  FORM = 'FORM',
+  FORM = 'form',
+  INPUT = 'input',
+  TEXT = 'text',
+  FILE = 'file',
+  SUBMIT = 'submit',
+  EMAIL = 'email',
+  CHECKBOX = 'checkbox',
+  IMG = 'img',
 }
 
 export default TagConstants;
