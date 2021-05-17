@@ -20,3 +20,8 @@ export interface IUser {
   email: string;
   score: number;
 }
+
+export interface IPopupService {
+  createPopup(element: HTMLElement): void;
+  removePopup(): void;
+}

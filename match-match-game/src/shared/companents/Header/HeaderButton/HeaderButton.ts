@@ -1,8 +1,10 @@
 import ContentConstants from '../../../constants/content.constants';
 import TagConstants from '../../../constants/tag.constants';
 import { IComponent } from '../../../interfaces';
-import { game, registration } from '../../../services/store/actions';
+import { popupService } from '../../../services/popup.serivce';
+import { game } from '../../../services/store/actions';
 import { store } from '../../../services/store/store.service';
+import RegistrationForm from '../../RegistrationForm/RegistrationForm';
 import './HeaderButton.scss';
 
 class HeaderButton implements IComponent {
@@ -30,7 +32,7 @@ class HeaderButton implements IComponent {
     if (user) {
       store.dispatch(game());
     } else {
-      store.dispatch(registration());
+      popupService.createPopup(new RegistrationForm().render());
     }
   };
 

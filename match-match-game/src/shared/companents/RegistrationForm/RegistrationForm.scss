@@ -1,0 +1,11 @@
+@import './../../../index.scss';
+
+.registration-form {
+  width: 639px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  background-color: $simple-color;
+  border-radius: 4px;
+  box-shadow: 0 0 10px $durk-color;
+}
