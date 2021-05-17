@@ -7,9 +7,14 @@ class Popup implements IComponent {
 
   constructor(private element: HTMLElement) { }
 
+  private handleClick = () => {
+    this.popup.remove();
+  };
+
   public render = () => {
     this.popup.classList.add('popup');
     this.popup.append(this.element);
+    this.popup.addEventListener('click', this.handleClick);
 
     return this.popup;
   };
