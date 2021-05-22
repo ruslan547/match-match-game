@@ -8,6 +8,7 @@ const initialState = {
   user: null,
   isGame: false,
   isRegistrationForm: false,
+  isValidForm: false,
 };
 
 const createStore = (rootReducer: Function, initState: IState) => {

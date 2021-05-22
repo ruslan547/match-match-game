@@ -9,6 +9,8 @@ function reducer(state: IState, action: IAction) {
       return { ...state, isGame: !state.isGame };
     case ActionConstants.REGISTRATION:
       return { ...state, isRegistrationForm: !state.isRegistrationForm };
+    case ActionConstants.INPUT_DATE_INTO_FORM:
+      return { ...state, isValidForm: action.payload };
     default:
       return state;
   }

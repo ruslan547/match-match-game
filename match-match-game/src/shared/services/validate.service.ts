@@ -1,26 +1,20 @@
 import TagConstants from '../constants/tag.constants';
+import { inputDataIntoForm } from './store/actions';
+import { store } from './store/store.service';
 
 class ValidateService {
   private isValid = false;
 
-  public checkText = (input: HTMLInputElement) => {
-    const { value } = input;
-    console.log(value);
-  };
+  private handleInput = () => {
+    this.isValid = true;
 
-  public checkEmail = (input: HTMLInputElement) => {
-    const { value } = input;
-    console.log(value);
-  };
+    document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
+      if (!(item as HTMLInputElement)?.validity.valid) {
+        this.isValid = false;
+      }
+    });
 
-  private handleInput = (event: Event) => {
-    const input = event.target as HTMLInputElement;
-
-    if (input.type === TagConstants.TEXT) {
-      this.checkText(input);
-    } else {
-      this.checkEmail(input);
-    }
+    store.dispatch(inputDataIntoForm(this.getIsValid()));
   };
 
   public validate = (input: HTMLInputElement) => {

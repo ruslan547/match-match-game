@@ -3,6 +3,7 @@ import TagConstants from '../../constants/tag.constants';
 import { IComponent } from '../../interfaces';
 import ValidateService from '../../services/validate.service';
 import FileInput from './FileInput/FileInput';
+import FormButton from './FormButton/FormButton';
 import Input from './Input/Input';
 import './RegistrationForm.scss';
 
@@ -46,8 +47,8 @@ class RegistrationForm implements IComponent {
     this.inutsContainer.append(this.fildsContainer, new FileInput().render());
 
     this.buttonsContainer.append(
-      // new FormButton(ContentConstants.ADD_USER).render(),
-      // new FormButton(ContentConstants.CANCEL).render(),
+      new FormButton(ContentConstants.ADD_USER).render(),
+      new FormButton(ContentConstants.CANCEL).render(),
     );
 
     this.registrationForm.append(

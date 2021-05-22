@@ -4,7 +4,7 @@ export interface IComponent {
 
 export interface IAction {
   type: string;
-  payload?: string;
+  payload?: string | boolean;
 }
 
 export interface IState {
@@ -12,6 +12,7 @@ export interface IState {
   user: IUser | null;
   isGame: boolean;
   isRegistrationForm: boolean;
+  isValidForm: boolean;
 }
 
 export interface IUser {
