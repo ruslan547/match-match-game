@@ -12,9 +12,12 @@ export interface IState {
   user: IUser | null;
   isGame: boolean;
   isValidForm: boolean;
+  cardsType: string;
+  difficulty: string;
 }
 
 export interface IUser {
+  img: string | null;
   firstName: string;
   lastName: string;
   email: string;

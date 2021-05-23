@@ -5,6 +5,7 @@ import RouteConstants from './shared/constants/route.constants';
 import Header from './shared/companents/Header/Header';
 import { IComponent } from './shared/interfaces';
 import TagConstants from './shared/constants/tag.constants';
+import BestScore from './pages/BestScore/BestScore';
 
 class App implements IComponent {
   private content: HTMLElement;
@@ -37,7 +38,7 @@ class App implements IComponent {
         this.content?.firstChild?.replaceWith(new AboutGame().render());
       })
       .add('best', () => {
-        console.log('best');
+        this.content?.firstChild?.replaceWith(new BestScore().render());
       })
       .add('settings', () => {
         console.log('sett');

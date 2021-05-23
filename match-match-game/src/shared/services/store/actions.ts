@@ -8,3 +8,9 @@ export const inputDataIntoForm = (payload: boolean) => (
   { type: ActionConstants.INPUT_DATE_INTO_FORM, payload }
 );
 export const registerUser = (payload: IUser) => ({ type: ActionConstants.REGISTER_USER, payload });
+export const setCardsType = (payload: string) => (
+  { type: ActionConstants.SET_CARDS_TAPY, payload }
+);
+export const setCDifficulty = (payload: string) => (
+  { type: ActionConstants.SET_DIFFICULTY, payload }
+);

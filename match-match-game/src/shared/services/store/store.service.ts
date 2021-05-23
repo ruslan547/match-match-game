@@ -1,3 +1,4 @@
+import ContentConstants from '../../constants/content.constants';
 import RouteConstants from '../../constants/route.constants';
 import { IAction, IState } from '../../interfaces';
 import { init } from './actions';
@@ -9,6 +10,8 @@ const initialState = {
   // TO DO delete isG
   isGame: false,
   isValidForm: false,
+  cardsType: ContentConstants.ANIMALS,
+  difficulty: ContentConstants.X4,
 };
 
 const createStore = (rootReducer: Function, initState: IState) => {

@@ -15,6 +15,13 @@ enum ContentConstants {
   REGISTER_RULE = 'Register new player in game',
   CONFIGURE_RULE = 'Configure your game settings',
   START_GAME_RULE = 'Start you new game! Remember card positions and match it before times up.',
+  BEST_PLAYERS = 'Best players',
+
+  ANIMALS = 'Animals',
+  CARS = 'Cars',
+  X4 = '4x4',
+  X6 = '6x6',
+  X8 = '8x8',
 }
 
 export default ContentConstants;

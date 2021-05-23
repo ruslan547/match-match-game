@@ -11,6 +11,10 @@ function reducer(state: IState, action: IAction) {
       return { ...state, isValidForm: action.payload };
     case ActionConstants.REGISTER_USER:
       return { ...state, user: action.payload };
+    case ActionConstants.SET_CARDS_TAPY:
+      return { ...state, cardsType: action.payload };
+    case ActionConstants.SET_DIFFICULTY:
+      return { ...state, difficulty: action.payload };
     default:
       return state;
   }

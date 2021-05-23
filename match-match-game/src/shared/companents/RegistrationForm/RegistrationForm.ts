@@ -50,6 +50,7 @@ class RegistrationForm implements IComponent {
     event.preventDefault();
 
     const user = {
+      img: null,
       firstName: this.firstNameInput.getValue(),
       lastName: this.lastNameInput.getValue(),
       email: this.emailInput.getValue(),
@@ -67,6 +68,7 @@ class RegistrationForm implements IComponent {
 
         popupService.removePopup();
         store.dispatch(registerUser(user));
+        this.db.close();
       };
     }
 
