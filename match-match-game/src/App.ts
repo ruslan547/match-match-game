@@ -6,6 +6,8 @@ import Header from './shared/companents/Header/Header';
 import { IComponent } from './shared/interfaces';
 import TagConstants from './shared/constants/tag.constants';
 import BestScore from './pages/BestScore/BestScore';
+import GameSetting from './pages/GameSettings/GameSettings';
+import Game from './pages/Game/Game';
 
 class App implements IComponent {
   private content: HTMLElement;
@@ -34,15 +36,16 @@ class App implements IComponent {
       root: RouteConstants.HASH_ABOUT,
     })
       .add(RouteConstants.ABOUT, () => {
-        console.log('about');
         this.content?.firstChild?.replaceWith(new AboutGame().render());
       })
-      .add('best', () => {
+      .add(RouteConstants.BEST, () => {
         this.content?.firstChild?.replaceWith(new BestScore().render());
       })
-      .add('settings', () => {
-        console.log('sett');
-        this.content?.firstChild?.replaceWith('settings');
+      .add(RouteConstants.SETTINGS, () => {
+        this.content?.firstChild?.replaceWith(new GameSetting().render());
+      })
+      .add(RouteConstants.GAME, () => {
+        this.content?.firstChild?.replaceWith(new Game().render());
       });
   };
 }

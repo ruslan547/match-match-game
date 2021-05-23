@@ -3,9 +3,9 @@ import { IAction, IState } from '../../interfaces';
 
 function reducer(state: IState, action: IAction) {
   switch (action.type) {
-    case ActionConstants.PAGE:
+    case ActionConstants.SET_PAGE:
       return { ...state, page: action.payload };
-    case ActionConstants.GAME:
+    case ActionConstants.SET_GAME:
       return { ...state, isGame: !state.isGame };
     case ActionConstants.INPUT_DATE_INTO_FORM:
       return { ...state, isValidForm: action.payload };

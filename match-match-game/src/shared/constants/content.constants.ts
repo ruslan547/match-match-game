@@ -16,6 +16,8 @@ enum ContentConstants {
   CONFIGURE_RULE = 'Configure your game settings',
   START_GAME_RULE = 'Start you new game! Remember card positions and match it before times up.',
   BEST_PLAYERS = 'Best players',
+  GAME_CARDS = 'Game cards',
+  DIFFICULTY = 'Difficulty',
 
   ANIMALS = 'Animals',
   CARS = 'Cars',

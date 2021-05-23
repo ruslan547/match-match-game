@@ -1,4 +1,5 @@
-import { page } from '../../../services/store/actions';
+import TagConstants from '../../../constants/tag.constants';
+import { setPage } from '../../../services/store/actions';
 import { store } from '../../../services/store/store.service';
 import './NavButton.scss';
 
@@ -8,61 +9,59 @@ interface NavButtonProp {
   url: string;
 }
 
-interface INavLink {
-  text: string;
-  img: string;
-  url: string;
-}
+class NavLink {
+  private text;
 
-class NavLink implements INavLink {
-  text;
+  private img;
 
-  img;
+  private url;
 
-  url;
+  private navLinkTag = document.createElement(TagConstants.A);
 
-  curPage;
+  private imgTag = document.createElement(TagConstants.IMG);
+
+  private textTag = document.createElement(TagConstants.SPAN);
 
   constructor({ text, img, url }: NavButtonProp) {
-    this.curPage = url.replace(/[/#]/g, '');
     this.text = text;
     this.img = img;
     this.url = url;
   }
 
-  private activate = (link: HTMLElement) => {
-    const state = store.getState();
+  private addClasses = () => {
+    const { href } = document.location;
+    this.navLinkTag.classList.add('nav-link');
+    this.imgTag.classList.add('nav-link__img');
+    this.textTag.classList.add('nav-link__text');
 
-    if (state.page === this.url) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
+    if (href.includes(this.url)) {
+      this.navLinkTag.classList.add('active');
     }
   };
 
+  private initElem = () => {
+    this.navLinkTag.href = this.url;
+    this.imgTag.src = this.img;
+    this.textTag.textContent = this.text;
+  };
+
+  private handleClick = () => {
+    document.querySelectorAll('.nav-link').forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    this.navLinkTag.classList.add('active');
+    store.dispatch(setPage(this.url));
+  };
+
   render = () => {
-    const navLinkTag = document.createElement('a');
-    const imgTag = document.createElement('img');
-    const textTag = document.createElement('span');
+    this.addClasses();
+    this.initElem();
+    this.navLinkTag.addEventListener('click', this.handleClick);
 
-    navLinkTag.href = this.url;
-    navLinkTag.classList.add('nav-link');
-    this.activate(navLinkTag);
-    imgTag.src = this.img;
-    imgTag.classList.add('nav-link__img');
-    textTag.textContent = this.text;
-    textTag.classList.add('nav-link__text');
-    navLinkTag.append(imgTag, textTag);
+    this.navLinkTag.append(this.imgTag, this.textTag);
 
-    navLinkTag.addEventListener('click', () => {
-      store.dispatch(page(this.url));
-    });
-
-    store.subscribe(() => {
-      this.activate(navLinkTag);
-    });
-
-    return navLinkTag;
+    return this.navLinkTag;
   };
 }
 

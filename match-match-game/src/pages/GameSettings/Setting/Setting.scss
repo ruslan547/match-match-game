@@ -1,0 +1,11 @@
+@import '../../../index.scss';
+
+.setting {
+  width: 250px;
+  height: 80px;
+  border-bottom: 3px solid $base-color;
+}
+
+.setting-title {
+  margin-top: 0;
+}

@@ -16,6 +16,8 @@ enum TagConstants {
   EMAIL = 'email',
   CHECKBOX = 'checkbox',
   IMG = 'img',
+  SELECT = 'select',
+  OPTION = 'option',
 }
 
 export default TagConstants;

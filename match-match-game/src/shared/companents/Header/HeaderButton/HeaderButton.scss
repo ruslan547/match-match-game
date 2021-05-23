@@ -3,6 +3,9 @@
 .header-btn {
   cursor: pointer;
   width: 207px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $simple-color;
   text-transform: uppercase;
   color: $main-color;
@@ -12,4 +15,5 @@
   padding: 10px 16px;
   box-sizing: border-box;
   font-size: 14px;
+  text-decoration: none;
 }

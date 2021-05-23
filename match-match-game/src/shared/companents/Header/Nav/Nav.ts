@@ -8,33 +8,30 @@ import setting from '../../../../assets/img/set.svg';
 import RouteConstants from '../../../constants/route.constants';
 
 class Nav {
+  private nav = document.createElement(TagConstants.UL);
+
   render = () => {
-    const ul = document.createElement(TagConstants.UL);
+    this.nav.classList.add('nav');
 
-    ul.classList.add('nav');
-    for (let i = 0; i < 3; i += 1) ul.append(document.createElement(TagConstants.LI));
+    this.nav.append(
+      new NavLink({
+        text: ContentConstants.ABOUT_GAME,
+        img: about,
+        url: RouteConstants.HASH_ABOUT,
+      }).render(),
+      new NavLink({
+        text: ContentConstants.BEST_SCORE,
+        img: star,
+        url: RouteConstants.HASH_BEST,
+      }).render(),
+      new NavLink({
+        text: ContentConstants.GAME_SETTINGS,
+        img: setting,
+        url: RouteConstants.HASH_SETTING,
+      }).render(),
+    );
 
-    const links = ul.children;
-
-    links.item(0)?.append(new NavLink({
-      text: ContentConstants.ABOUT_GAME,
-      img: about,
-      url: RouteConstants.HASH_ABOUT,
-    }).render());
-
-    links.item(1)?.append(new NavLink({
-      text: ContentConstants.BEST_SCORE,
-      img: star,
-      url: RouteConstants.HASH_BEST,
-    }).render());
-
-    links.item(2)?.append(new NavLink({
-      text: ContentConstants.GAME_SETTINGS,
-      img: setting,
-      url: RouteConstants.HASH_SETTING,
-    }).render());
-
-    return ul;
+    return this.nav;
   };
 }
 
