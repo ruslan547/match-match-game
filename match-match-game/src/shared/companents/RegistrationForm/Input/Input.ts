@@ -1,6 +1,8 @@
+import { ErrorConstants } from '../../../constants/error.constants';
 import { RegExpConstants } from '../../../constants/regexp.constants';
 import TagConstants from '../../../constants/tag.constants';
 import { IComponent } from '../../../interfaces';
+import InputAlert from '../InputAlert/InputAlert';
 import './Input.scss';
 
 class Input implements IComponent {
@@ -9,6 +11,8 @@ class Input implements IComponent {
   private input = document.createElement(TagConstants.INPUT);
 
   private checkbox = document.createElement(TagConstants.INPUT);
+
+  private alert = new InputAlert().render();
 
   constructor(private name: string, private cb: Function, private type = TagConstants.TEXT) { }
 
@@ -31,6 +35,7 @@ class Input implements IComponent {
     this.input.pattern = (this.type === TagConstants.TEXT)
       ? RegExpConstants.INPUT_INITIALS : RegExpConstants.INPUT_EMAIL;
     this.checkbox.type = 'checkbox';
+    this.alert.textContent = ErrorConstants.INVALID + this.name;
   };
 
   private addEventListeners = () => {
@@ -39,12 +44,16 @@ class Input implements IComponent {
       if ((target as HTMLInputElement)?.validity.valid) {
         this.checkbox.checked = true;
         this.element.classList.remove('invalid');
+        this.alert.remove();
       } else {
         this.checkbox.checked = false;
         this.element.classList.add('invalid');
+        this.input.after(this.alert);
       }
     });
   };
+
+  public getValue = () => this.input.value;
 
   render = () => {
     this.addClasses();

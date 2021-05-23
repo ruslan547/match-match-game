@@ -1,0 +1,13 @@
+@import '../../../../index.scss';
+
+.input-alert {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 328px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $alert-color;
+}

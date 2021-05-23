@@ -4,14 +4,13 @@ export interface IComponent {
 
 export interface IAction {
   type: string;
-  payload?: string | boolean;
+  payload?: string | boolean | IUser;
 }
 
 export interface IState {
   page: string;
   user: IUser | null;
   isGame: boolean;
-  isRegistrationForm: boolean;
   isValidForm: boolean;
 }
 

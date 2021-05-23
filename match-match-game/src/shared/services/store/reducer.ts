@@ -7,10 +7,10 @@ function reducer(state: IState, action: IAction) {
       return { ...state, page: action.payload };
     case ActionConstants.GAME:
       return { ...state, isGame: !state.isGame };
-    case ActionConstants.REGISTRATION:
-      return { ...state, isRegistrationForm: !state.isRegistrationForm };
     case ActionConstants.INPUT_DATE_INTO_FORM:
       return { ...state, isValidForm: action.payload };
+    case ActionConstants.REGISTER_USER:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

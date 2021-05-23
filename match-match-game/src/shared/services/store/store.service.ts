@@ -6,8 +6,8 @@ import reducer from './reducer';
 const initialState = {
   page: RouteConstants.HASH_ABOUT,
   user: null,
+  // TO DO delete isG
   isGame: false,
-  isRegistrationForm: false,
   isValidForm: false,
 };
 

@@ -10,14 +10,16 @@ class FormButton implements IComponent {
   constructor(private value: string) { }
 
   private handleClick = (event: Event) => {
-    event.preventDefault();
+    if (this.value === ContentConstants.CANCEL) {
+      event.preventDefault();
 
-    document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
-      if (item.type !== TagConstants.SUBMIT) {
-        item.value = '';
-        item.checked = false;
-      }
-    });
+      document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
+        if (item.type !== TagConstants.SUBMIT) {
+          item.value = '';
+          item.checked = false;
+        }
+      });
+    }
   };
 
   private addSubscribe = () => {

@@ -10,10 +10,8 @@ import './HeaderButton.scss';
 class HeaderButton implements IComponent {
   private button = document.createElement(TagConstants.BUTTON);
 
-  private state = store.getState();
-
   private initBtn = () => {
-    const { user, isGame } = this.state;
+    const { user, isGame } = store.getState();
 
     if (user) {
       if (isGame) {
@@ -27,7 +25,7 @@ class HeaderButton implements IComponent {
   };
 
   private handleClick = () => {
-    const { user } = this.state;
+    const { user } = store.getState();
 
     if (user) {
       store.dispatch(game());

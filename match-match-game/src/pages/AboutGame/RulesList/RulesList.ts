@@ -1,4 +1,4 @@
-import RulesConstants from '../../../shared/constants/rules.constants';
+import ContentConstants from '../../../shared/constants/content.constants';
 import TagConstants from '../../../shared/constants/tag.constants';
 import { IComponent } from '../../../shared/interfaces';
 import Rule from '../Rule/Rule';
@@ -11,9 +11,9 @@ class RulesList implements IComponent {
   public render = () => {
     this.rulesList.classList.add('rules-list');
     this.rulesList.append(
-      new Rule(new RuleDescription(1, RulesConstants.REGISTER).render()).render(),
-      new Rule(new RuleDescription(2, RulesConstants.CONFIGURE).render()).render(),
-      new Rule(new RuleDescription(3, RulesConstants.START_GAME).render()).render(),
+      new Rule(new RuleDescription(1, ContentConstants.REGISTER_RULE).render()).render(),
+      new Rule(new RuleDescription(2, ContentConstants.CONFIGURE_RULE).render()).render(),
+      new Rule(new RuleDescription(3, ContentConstants.START_GAME_RULE).render()).render(),
     );
 
     return this.rulesList;

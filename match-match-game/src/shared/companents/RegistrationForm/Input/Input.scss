@@ -1,6 +1,7 @@
 @import './../../../../index.scss';
 
 .input-container {
+  position: relative;
   width: 328px;
   height: 62px;
   display: flex;
@@ -14,12 +15,13 @@
 }
 
 .input {
+  width: 285px;
   background-color: transparent;
   border: none;
   outline: none;
 }
 
 .invalid {
-  border-color: #900;
-  background-color: #FDD;
+  border-color: $alert-color;
+  background-color: $lite-alert-color;
 }

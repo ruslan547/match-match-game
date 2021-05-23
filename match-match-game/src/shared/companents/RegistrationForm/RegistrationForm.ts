@@ -1,6 +1,10 @@
+import { popupService } from '../../services/popup.serivce';
+import { registerUser } from '../../services/store/actions';
 import ContentConstants from '../../constants/content.constants';
 import TagConstants from '../../constants/tag.constants';
 import { IComponent } from '../../interfaces';
+import DbService from '../../services/db.service';
+import { store } from '../../services/store/store.service';
 import ValidateService from '../../services/validate.service';
 import FileInput from './FileInput/FileInput';
 import FormButton from './FormButton/FormButton';
@@ -20,28 +24,86 @@ class RegistrationForm implements IComponent {
 
   private validateService = new ValidateService();
 
+  private firstNameInput = new Input(
+    ContentConstants.FIRST_NAME,
+    this.validateService.validate,
+  );
+
+  private lastNameInput = new Input(
+    ContentConstants.LAST_NAME,
+    this.validateService.validate,
+  );
+
+  private emailInput = new Input(
+    ContentConstants.EMAIL,
+    this.validateService.validate,
+    TagConstants.EMAIL,
+  );
+
+  private db = new DbService();
+
   private handleClick = (event: Event) => {
     event.stopPropagation();
   };
 
-  public render = () => {
+  private handleSubmit = async (event: Event) => {
+    event.preventDefault();
+
+    const user = {
+      firstName: this.firstNameInput.getValue(),
+      lastName: this.lastNameInput.getValue(),
+      email: this.emailInput.getValue(),
+      score: 0,
+    };
+
+    await this.db.open('users');
+    const data = this.db.get(user.email);
+
+    if (data) {
+      data.onsuccess = () => {
+        if (!data?.result) {
+          this.db.add(user);
+        }
+
+        popupService.removePopup();
+        store.dispatch(registerUser(user));
+      };
+    }
+
+    document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
+      if (item.type !== TagConstants.SUBMIT) {
+        item.value = '';
+        item.checked = false;
+      }
+    });
+  };
+
+  private addClasses = () => {
     this.registrationForm.classList.add('registration-form');
     this.inutsContainer.classList.add('inputs-container');
     this.fildsContainer.classList.add('filds-container');
     this.buttonsContainer.classList.add('buttons-container');
-    this.registrationForm.addEventListener('click', this.handleClick);
-    this.formTitle.textContent = ContentConstants.REGISTER_NEW_PLAYER;
+  };
 
+  private addEventListeners = () => {
+    this.registrationForm.addEventListener('click', this.handleClick);
+    this.registrationForm.addEventListener('submit', this.handleSubmit);
+  };
+
+  private addAttributes = () => {
+    this.formTitle.textContent = ContentConstants.REGISTER_NEW_PLAYER;
     this.registrationForm.noValidate = true;
+  };
+
+  public render = () => {
+    this.addClasses();
+    this.addEventListeners();
+    this.addAttributes();
 
     this.fildsContainer.append(
-      new Input(ContentConstants.FIRST_NAME, this.validateService.validate).render(),
-      new Input(ContentConstants.LAST_NAME, this.validateService.validate).render(),
-      new Input(
-        ContentConstants.EMAIL,
-        this.validateService.validate,
-        TagConstants.EMAIL,
-      ).render(),
+      this.firstNameInput.render(),
+      this.lastNameInput.render(),
+      this.emailInput.render(),
     );
 
     this.inutsContainer.append(this.fildsContainer, new FileInput().render());
