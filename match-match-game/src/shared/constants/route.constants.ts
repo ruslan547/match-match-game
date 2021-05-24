@@ -9,6 +9,8 @@ enum RouteConstants {
   HASH_BEST = '/#/best',
   HASH_SETTING = '/#/settings',
   HASH_GAME = '/#/game',
+  ANIMALS = 'animals',
+  CARS = 'cars',
 }
 
 export default RouteConstants;

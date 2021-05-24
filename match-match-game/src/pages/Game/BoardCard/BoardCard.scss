@@ -1,0 +1,71 @@
+@import '../../../index.scss';
+
+.board-card {
+  cursor: pointer;
+  width: 168px;
+  height: 168px;
+  position: relative;
+  margin-bottom: 20px;
+  perspective: 900px;
+
+  // &:hover {
+  //   .back-card {
+  //     transform: rotateY(-180deg);
+  //   }
+
+  //   .front-card {
+  //     transform: rotateY(0);
+  //   }
+  // }
+}
+
+.front-card {
+  width: 100%;
+  height: 168px;
+  transform: rotateY(180deg);
+}
+
+.back-card {
+  width: 100%;
+  height: 168px;
+  background-image: url(../../../assets/img/backside.svg);
+
+  // transform: rotateY(180deg);
+}
+
+.front-card,
+.back-card {
+  transition: .5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.fliped {
+  .back-card {
+    transform: rotateY(-180deg);
+  }
+
+  .front-card {
+    transform: rotateY(0);
+  }
+}
+
+.succeed::after,
+.error::after {
+  content: '';
+  width: 168px;
+  height: 168px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.succeed::after {
+    background-color: rgba(30, 130, 76, .5);
+}
+
+.error::after {
+  background-color: rgb(255, 0, 0, .5);
+}
