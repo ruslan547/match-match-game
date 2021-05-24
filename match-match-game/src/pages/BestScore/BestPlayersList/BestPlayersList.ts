@@ -49,6 +49,7 @@ class BestPlayersList implements IComponent {
       data.onsuccess = () => {
         const usersList = data.result
           .filter((_, index) => index < 10)
+          .sort((a, b) => b.score - a.score)
           .map((item: IUser) => this.creatUserCard(item));
 
         this.bestPlayersList.append(...usersList);

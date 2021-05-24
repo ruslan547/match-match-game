@@ -1,12 +1,24 @@
+import { store } from './store/store.service';
+import { DbConstants } from '../constants/db.constants';
 import WinPopup from '../../pages/Game/WinPopup/WinPopup';
+import DbService from './db.service';
 import { popupService } from './popup.serivce';
+import TimerService from './timer.service';
 
 class GameService {
+  private db = new DbService();
+
+  private timeService = new TimerService();
+
   private succeeds: HTMLElement[] = [];
 
   private cardNum = 0;
 
   private prev: HTMLElement | null = null;
+
+  private cmpNum = 0;
+
+  private errCmpNum = 0;
 
   private cur: HTMLElement | null = null;
 
@@ -36,7 +48,25 @@ class GameService {
     this.clearFilds();
   };
 
-  private finishGame = () => {
+  private calcScore = () => {
+    const cmp = this.cmpNum - this.errCmpNum;
+    const seconds = this.timeService.getDate();
+    const score = cmp * 100 - seconds * 10;
+
+    return score < 0 ? 0 : score;
+  };
+
+  private sendScore = async () => {
+    const { user } = store.getState();
+
+    user.score = this.calcScore();
+    await this.db.open(DbConstants.USERS);
+    this.db.update(user);
+  };
+
+  private finishGame = async () => {
+    this.timeService.stopTimer();
+    await this.sendScore();
     popupService.createPopup(new WinPopup().render());
   };
 
@@ -54,6 +84,7 @@ class GameService {
       return;
     }
 
+    this.cmpNum += 1;
     this.flipOver(elem);
 
     if (!this.prev) {
@@ -72,6 +103,7 @@ class GameService {
       return;
     }
 
+    this.errCmpNum += 1;
     this.reset(this.prev, elem);
   };
 

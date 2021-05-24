@@ -6,6 +6,7 @@ enum ActionConstants {
   REGISTER_USER = 'registerUser',
   SET_CARDS_TAPY = 'setCardsType',
   SET_DIFFICULTY = 'setDifficulty',
+  SET_TIME = 'setTime',
 }
 
 export default ActionConstants;

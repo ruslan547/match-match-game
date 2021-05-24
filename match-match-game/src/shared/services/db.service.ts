@@ -53,6 +53,24 @@ class DbService {
     }
   };
 
+  public update = (user: IUser) => {
+    if (this.db && this.dbName) {
+      const transaction = this.db.transaction(this.dbName, 'readwrite');
+      const users = transaction.objectStore(this.dbName);
+
+      users.openCursor().onsuccess = ({ target }) => {
+        const cursor = (target as IDBRequest<IDBCursorWithValue | null>).result;
+        if (cursor) {
+          if (cursor.value.email === user.email) {
+            cursor.update(user);
+          }
+
+          cursor.continue();
+        }
+      };
+    }
+  };
+
   public get = (id: string) => {
     if (this.db && this.dbName) {
       const transaction = this.db.transaction(this.dbName, 'readwrite');

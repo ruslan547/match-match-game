@@ -1,0 +1,11 @@
+@import '../../../index.scss';
+
+.timer {
+  width: 256px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+}

@@ -15,6 +15,8 @@ function reducer(state: IState, action: IAction) {
       return { ...state, cardsType: action.payload };
     case ActionConstants.SET_DIFFICULTY:
       return { ...state, difficulty: action.payload };
+    case ActionConstants.SET_TIME:
+      return { ...state, time: action.payload };
     default:
       return state;
   }

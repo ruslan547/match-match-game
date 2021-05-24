@@ -14,6 +14,7 @@ export interface IState {
   isValidForm: boolean;
   cardsType: string;
   difficulty: string;
+  time: string;
 }
 
 export interface IUser {

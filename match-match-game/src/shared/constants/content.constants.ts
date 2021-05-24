@@ -18,6 +18,9 @@ enum ContentConstants {
   BEST_PLAYERS = 'Best players',
   GAME_CARDS = 'Game cards',
   DIFFICULTY = 'Difficulty',
+  WIP_POPUP_TEXT = 'Congratulations! You successfully found all matches on ',
+  MINUTES = ' minutes.',
+  OK = 'OK',
 
   ANIMALS = 'Animals',
   CARS = 'Cars',

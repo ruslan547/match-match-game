@@ -14,3 +14,4 @@ export const setCardsType = (payload: string) => (
 export const setDifficulty = (payload: string) => (
   { type: ActionConstants.SET_DIFFICULTY, payload }
 );
+export const setTime = (payload: string) => ({ type: ActionConstants.SET_TIME, payload });

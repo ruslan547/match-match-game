@@ -12,6 +12,7 @@ const initialState = {
   isValidForm: false,
   cardsType: ContentConstants.ANIMALS,
   difficulty: ContentConstants.X4,
+  time: '00:00',
 };
 
 const createStore = (rootReducer: Function, initState: IState) => {

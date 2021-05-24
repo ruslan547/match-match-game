@@ -1,3 +1,4 @@
+import { store } from './shared/services/store/store.service';
 import './App.scss';
 import Router from './shared/services/router.service';
 import AboutGame from './pages/AboutGame/AboutGame';
@@ -45,7 +46,13 @@ class App implements IComponent {
         this.content?.firstChild?.replaceWith(new GameSetting().render());
       })
       .add(RouteConstants.GAME, () => {
-        this.content?.firstChild?.replaceWith(new Game().render());
+        if (store.getState().user) {
+          this.content?.firstChild?.replaceWith(new Game().render());
+        } else {
+          const link = document.createElement(TagConstants.A);
+          link.href = RouteConstants.HASH_ABOUT;
+          link.click();
+        }
       });
   };
 }
