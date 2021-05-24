@@ -9,6 +9,7 @@ import TagConstants from './shared/constants/tag.constants';
 import BestScore from './pages/BestScore/BestScore';
 import GameSetting from './pages/GameSettings/GameSettings';
 import Game from './pages/Game/Game';
+import { setPage } from './shared/services/store/actions';
 
 class App implements IComponent {
   private content: HTMLElement;
@@ -38,16 +39,20 @@ class App implements IComponent {
     })
       .add(RouteConstants.ABOUT, () => {
         this.content?.firstChild?.replaceWith(new AboutGame().render());
+        store.dispatch(setPage(RouteConstants.HASH_ABOUT));
       })
       .add(RouteConstants.BEST, () => {
         this.content?.firstChild?.replaceWith(new BestScore().render());
+        store.dispatch(setPage(RouteConstants.HASH_BEST));
       })
       .add(RouteConstants.SETTINGS, () => {
         this.content?.firstChild?.replaceWith(new GameSetting().render());
+        store.dispatch(setPage(RouteConstants.HASH_SETTING));
       })
       .add(RouteConstants.GAME, () => {
         if (store.getState().user) {
           this.content?.firstChild?.replaceWith(new Game().render());
+          store.dispatch(setPage(RouteConstants.HASH_GAME));
         } else {
           const link = document.createElement(TagConstants.A);
           link.href = RouteConstants.HASH_ABOUT;

@@ -6,9 +6,22 @@ import about from '../../../../assets/img/about.svg';
 import star from '../../../../assets/img/star.svg';
 import setting from '../../../../assets/img/set.svg';
 import RouteConstants from '../../../constants/route.constants';
+import { store } from '../../../services/store/store.service';
 
 class Nav {
   private nav = document.createElement(TagConstants.UL);
+
+  private activateLinks = () => {
+    const { page } = store.getState();
+
+    Array.from(this.nav.children).forEach((item) => {
+      item.classList.remove('active');
+
+      if ((item as HTMLLinkElement).href.includes(page)) {
+        item.classList.add('active');
+      }
+    });
+  };
 
   render = () => {
     this.nav.classList.add('nav');
@@ -30,6 +43,10 @@ class Nav {
         url: RouteConstants.HASH_SETTING,
       }).render(),
     );
+
+    store.subscribe(() => {
+      this.activateLinks();
+    });
 
     return this.nav;
   };

@@ -58,6 +58,7 @@ class Board implements IComponent {
       const cardNum = (i % 8) + 1;
       const card = new BoardCard(cardNum).render();
 
+      card.classList.add('fliped');
       card.dataset.img = cardNum.toString();
       cards.push(card);
     }

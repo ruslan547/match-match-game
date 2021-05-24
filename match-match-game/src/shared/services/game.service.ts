@@ -20,11 +20,21 @@ class GameService {
 
   private errCmpNum = 0;
 
-  private cur: HTMLElement | null = null;
+  constructor() {
+    store.subscribe(() => {
+      if (this.timeService.getDate() < 1) {
+        this.startGame();
+      }
+    });
+  }
+
+  private startGame = () => {
+    const cards = document.querySelectorAll('.fliped');
+    cards.forEach((item) => item.classList.remove('fliped'));
+  };
 
   private clearFilds = () => {
     this.prev = null;
-    this.cur = null;
   };
 
   private setToSuccess = (...elems: HTMLElement[]) => {
@@ -72,15 +82,13 @@ class GameService {
 
   private isFinish = () => this.succeeds.length === this.cardNum;
 
-  private isSucceeds = (elem: HTMLElement) => !!this.succeeds.find((item) => Object.is(item, elem));
-
   private isTheSameImg = (
     prev: HTMLElement,
     cur: HTMLElement,
   ) => prev.dataset.img === cur.dataset.img;
 
   public chooseElem = (elem: HTMLElement) => {
-    if (this.isSucceeds(elem) || elem === this.prev) {
+    if (elem.classList.contains('fliped')) {
       return;
     }
 

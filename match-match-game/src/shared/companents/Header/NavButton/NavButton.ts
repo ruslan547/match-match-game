@@ -1,6 +1,4 @@
 import TagConstants from '../../../constants/tag.constants';
-import { setPage } from '../../../services/store/actions';
-import { store } from '../../../services/store/store.service';
 import './NavButton.scss';
 
 interface NavButtonProp {
@@ -30,6 +28,7 @@ class NavLink {
 
   private addClasses = () => {
     const { href } = document.location;
+
     this.navLinkTag.classList.add('nav-link');
     this.imgTag.classList.add('nav-link__img');
     this.textTag.classList.add('nav-link__text');
@@ -45,19 +44,9 @@ class NavLink {
     this.textTag.textContent = this.text;
   };
 
-  private handleClick = () => {
-    document.querySelectorAll('.nav-link').forEach((item) => {
-      item.classList.remove('active');
-    });
-
-    this.navLinkTag.classList.add('active');
-    store.dispatch(setPage(this.url));
-  };
-
   render = () => {
     this.addClasses();
     this.initElem();
-    this.navLinkTag.addEventListener('click', this.handleClick);
 
     this.navLinkTag.append(this.imgTag, this.textTag);
 

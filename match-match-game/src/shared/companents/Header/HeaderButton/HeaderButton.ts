@@ -13,12 +13,11 @@ class HeaderButton implements IComponent {
   private button = document.createElement(TagConstants.A);
 
   private initBtn = () => {
-    const { user } = store.getState();
-    const { href } = document.location;
+    const { user, page } = store.getState();
 
     if (!user) {
       this.button.textContent = ContentConstants.REGISTER_NEW_PLAYER;
-    } else if (href.includes(RouteConstants.GAME)) {
+    } else if (page === RouteConstants.HASH_GAME) {
       this.button.textContent = ContentConstants.STOP_GAME;
     } else {
       this.button.textContent = ContentConstants.START_GAME;
@@ -42,13 +41,11 @@ class HeaderButton implements IComponent {
 
     if (!user) {
       popupService.createPopup(new RegistrationForm().render());
-    } else if (href.includes(RouteConstants.GAME)) {
+    } else if (href.includes(RouteConstants.HASH_GAME)) {
       this.stopGame();
     } else {
       this.startGame();
     }
-
-    this.initBtn();
   };
 
   public render = () => {
