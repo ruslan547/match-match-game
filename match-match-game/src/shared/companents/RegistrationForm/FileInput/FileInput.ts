@@ -21,6 +21,7 @@ class FileInput implements IComponent {
     reader.onload = () => {
       if (this.img) {
         this.img.src = reader.result as string;
+        this.fileInputContainer.dataset.img = this.img.src;
         this.fileInput.files = null;
       }
     };
@@ -33,17 +34,23 @@ class FileInput implements IComponent {
     }
   };
 
-  public render = () => {
+  private addClasses = () => {
     this.fileInputContainer.classList.add('file-input-container');
     this.fileInput.classList.add('file-input');
     this.img.classList.add('file-input-img');
+  };
+
+  private setAttributes = () => {
     this.fileInput.type = TagConstants.FILE;
     this.img.src = avatar;
+    this.fileInputContainer.dataset.img = avatar;
+  };
 
+  public render = () => {
+    this.addClasses();
+    this.setAttributes();
     this.fileInput.addEventListener('input', this.handleInput);
-
     this.img.addEventListener('click', this.handleClick);
-
     this.fileInputContainer.append(this.img, this.fileInput);
 
     return this.fileInputContainer;

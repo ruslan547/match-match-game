@@ -4,6 +4,7 @@ import DbService from '../../../shared/services/db.service';
 import avatar from '../../../assets/img/form-avatar.svg';
 import './BestPlayersList.scss';
 import { DbConstants } from '../../../shared/constants/db.constants';
+import { store } from '../../../shared/services/store/store.service';
 
 class BestPlayersList implements IComponent {
   private bestPlayersList = document.createElement(TagConstants.UL);
@@ -52,6 +53,7 @@ class BestPlayersList implements IComponent {
           .sort((a, b) => b.score - a.score)
           .map((item: IUser) => this.creatUserCard(item));
 
+        this.bestPlayersList.innerHTML = '';
         this.bestPlayersList.append(...usersList);
         this.db.close();
       };
@@ -61,6 +63,7 @@ class BestPlayersList implements IComponent {
   public render = () => {
     this.renderList();
     this.bestPlayersList.classList.add('best-players-list');
+    store.subscribe(() => this.renderList());
 
     return this.bestPlayersList;
   };

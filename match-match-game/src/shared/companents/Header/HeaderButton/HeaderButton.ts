@@ -19,6 +19,7 @@ class HeaderButton implements IComponent {
 
     if (user) {
       this.img.src = user.img;
+      this.img.title = `${user.firstName} ${user.lastName}`;
       this.button.after(this.img);
 
       if (page === RouteConstants.HASH_GAME) {

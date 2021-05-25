@@ -9,6 +9,7 @@ class Popup implements IComponent {
 
   private handleClick = () => {
     this.popup.remove();
+    document.body.style.overflowY = 'auto';
   };
 
   public render = () => {

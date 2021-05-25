@@ -7,10 +7,12 @@ class PopupService implements IPopupService {
   createPopup = (element: HTMLElement): void => {
     this.popup = new Popup(element).render();
     document.body.append(this.popup);
+    document.body.style.overflowY = 'hidden';
   };
 
   removePopup = (): void => {
     this.popup?.remove();
+    document.body.style.overflowY = 'auto';
   };
 }
 

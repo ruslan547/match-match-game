@@ -1,8 +1,10 @@
+import { IUser, IComponent } from '../../interfaces';
+import { DbConstants } from '../../constants/db.constants';
 import { popupService } from '../../services/popup.serivce';
 import { registerUser } from '../../services/store/actions';
 import ContentConstants from '../../constants/content.constants';
 import TagConstants from '../../constants/tag.constants';
-import { IComponent } from '../../interfaces';
+
 import DbService from '../../services/db.service';
 import { store } from '../../services/store/store.service';
 import ValidateService from '../../services/validate.service';
@@ -21,6 +23,8 @@ class RegistrationForm implements IComponent {
   private fildsContainer = document.createElement(TagConstants.DIV);
 
   private buttonsContainer = document.createElement(TagConstants.DIV);
+
+  private fileInput = new FileInput().render();
 
   private validateService = new ValidateService();
 
@@ -47,32 +51,26 @@ class RegistrationForm implements IComponent {
   };
 
   private handleSubmit = async (event: Event) => {
-    const img: HTMLImageElement | null = document.querySelector('.file-input-img');
-
     event.preventDefault();
 
-    const user = {
-      img: img ? img.src : null,
+    const user: IUser = {
+      img: this.fileInput.dataset.img as string,
       firstName: this.firstNameInput.getValue(),
       lastName: this.lastNameInput.getValue(),
       email: this.emailInput.getValue(),
       score: 0,
     };
 
-    await this.db.open('users');
-    const data = this.db.get(user.email);
+    await this.db.open(DbConstants.USERS);
+    const id = await this.db.add(user);
 
-    if (data) {
-      data.onsuccess = () => {
-        if (!data?.result) {
-          this.db.add(user);
-        }
-
-        popupService.removePopup();
-        store.dispatch(registerUser(user));
-        this.db.close();
-      };
+    if (id) {
+      user.id = id as number;
+      store.dispatch(registerUser(user));
     }
+
+    this.db.close();
+    popupService.removePopup();
 
     document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
       if (item.type !== TagConstants.SUBMIT) {
@@ -110,7 +108,7 @@ class RegistrationForm implements IComponent {
       this.emailInput.render(),
     );
 
-    this.inutsContainer.append(this.fildsContainer, new FileInput().render());
+    this.inutsContainer.append(this.fildsContainer, this.fileInput);
 
     this.buttonsContainer.append(
       new FormButton(ContentConstants.ADD_USER).render(),

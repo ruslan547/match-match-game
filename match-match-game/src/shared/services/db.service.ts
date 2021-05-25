@@ -18,8 +18,9 @@ class DbService {
 
     openRequest.onupgradeneeded = () => {
       this.db = openRequest.result;
+
       if (!this.db.objectStoreNames.contains(table)) {
-        this.db.createObjectStore(table, { keyPath: DbConstants.EMAIL });
+        this.db.createObjectStore(table, { keyPath: DbConstants.ID, autoIncrement: true });
       }
 
       resolve(this.db);
@@ -48,17 +49,21 @@ class DbService {
     return null;
   };
 
-  public add = (user: IUser) => {
+  public add = async (user: IUser) => new Promise((resolve, reject) => {
     const users = this.getUsers();
 
     if (users) {
       const request: IDBRequest<IDBValidKey> = users.add(user);
 
       request.onerror = () => {
-        throw new Error(ErrorConstants.ADD_USER_ER);
+        reject(new Error(ErrorConstants.ADD_USER_ER));
+      };
+
+      request.onsuccess = () => {
+        resolve(request.result);
       };
     }
-  };
+  });
 
   public update = (user: IUser) => {
     const users = this.getUsers();
@@ -68,7 +73,7 @@ class DbService {
         const cursor = (target as IDBRequest<IDBCursorWithValue | null>).result;
 
         if (cursor) {
-          if (cursor.value.email === user.email) {
+          if (cursor.value.id === user.id) {
             cursor.update(user);
           }
 

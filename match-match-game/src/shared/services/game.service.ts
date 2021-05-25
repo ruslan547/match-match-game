@@ -72,6 +72,7 @@ class GameService {
     user.score = this.calcScore();
     await this.db.open(DbConstants.USERS);
     this.db.update(user);
+    this.db.close();
   };
 
   private finishGame = async () => {
