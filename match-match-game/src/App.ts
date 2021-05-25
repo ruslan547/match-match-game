@@ -52,7 +52,7 @@ class App implements IComponent {
       })
       .add(RouteConstants.SETTINGS, () => {
         this.content?.firstChild?.replaceWith(new GameSetting().render());
-        store.dispatch(setPage(RouteConstants.HASH_SETTING));
+        store.dispatch(setPage(RouteConstants.HASH_SETTINGS));
       })
       .add(RouteConstants.GAME, () => {
         if (store.getState().user) {

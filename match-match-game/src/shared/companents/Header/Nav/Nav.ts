@@ -41,7 +41,7 @@ class Nav {
       new NavLink({
         text: ContentConstants.GAME_SETTINGS,
         img: setting,
-        url: RouteConstants.HASH_SETTING,
+        url: RouteConstants.HASH_SETTINGS,
       }).render(),
     );
 
