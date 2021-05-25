@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../../shared/constants/classes.constants';
 import { IAction, IComponent } from '../../../shared/interfaces';
 import TagConstants from '../../../shared/constants/tag.constants';
 import { store } from '../../../shared/services/store/store.service';
@@ -22,6 +23,7 @@ class Setting implements IComponent {
 
   private renderOptions = () => this.options.map((item) => {
     const option = document.createElement(TagConstants.OPTION);
+
     option.value = item;
     option.textContent = item;
 
@@ -30,6 +32,7 @@ class Setting implements IComponent {
 
   private renderPrevOption = () => {
     const option = document.createElement(TagConstants.OPTION);
+
     option.value = ContentConstants.EMPTY_FILLER;
     option.textContent = this.preview;
 
@@ -41,9 +44,9 @@ class Setting implements IComponent {
   };
 
   private addClasses = () => {
-    this.setting.classList.add('setting');
-    this.settingTitle.classList.add('setting-title');
-    this.select.classList.add('setting-select');
+    this.setting.classList.add(ClassesConstants.SETTING);
+    this.settingTitle.classList.add(ClassesConstants.SETTING_TITLE);
+    this.select.classList.add(ClassesConstants.SETTING_SELECT);
   };
 
   public render = () => {

@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../../constants/classes.constants';
 import ContentConstants from '../../../constants/content.constants';
 import './Nav.scss';
 import TagConstants from '../../../constants/tag.constants';
@@ -15,16 +16,16 @@ class Nav {
     const { page } = store.getState();
 
     Array.from(this.nav.children).forEach((item) => {
-      item.classList.remove('active');
+      item.classList.remove(ClassesConstants.ACTIVE);
 
       if ((item as HTMLLinkElement).href.includes(page)) {
-        item.classList.add('active');
+        item.classList.add(ClassesConstants.ACTIVE);
       }
     });
   };
 
   render = () => {
-    this.nav.classList.add('nav');
+    this.nav.classList.add(ClassesConstants.NAV);
 
     this.nav.append(
       new NavLink({

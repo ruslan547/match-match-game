@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../constants/classes.constants';
 import { IComponent } from '../../interfaces';
 import Logo from './Logo/Logo';
 import Nav from './Nav/Nav';
@@ -13,9 +14,9 @@ class Header implements IComponent {
   private rightHeaderContainer = document.createElement(TagConstants.DIV);
 
   private addClasses = () => {
-    this.headerTag.classList.add('header');
-    this.leftHeaderContainer.classList.add('left-header-container');
-    this.rightHeaderContainer.classList.add('right-header-container');
+    this.headerTag.classList.add(ClassesConstants.HEADER);
+    this.leftHeaderContainer.classList.add(ClassesConstants.LEFT_HEADER_CONTAINER);
+    this.rightHeaderContainer.classList.add(ClassesConstants.RIGHT_HEADER_CONTAINER);
   };
 
   render = () => {

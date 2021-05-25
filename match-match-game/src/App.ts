@@ -10,6 +10,7 @@ import BestScore from './pages/BestScore/BestScore';
 import GameSetting from './pages/GameSettings/GameSettings';
 import Game from './pages/Game/Game';
 import { setPage } from './shared/services/store/actions';
+import { ClassesConstants } from './shared/constants/classes.constants';
 
 class App implements IComponent {
   private content: HTMLElement;
@@ -22,9 +23,13 @@ class App implements IComponent {
     this.initRouter();
   }
 
+  private addClasses = () => {
+    this.app.classList.add(ClassesConstants.APP);
+    this.content.classList.add(ClassesConstants.CONTENT);
+  };
+
   public render = () => {
-    this.app.classList.add('app');
-    this.content.classList.add('content');
+    this.addClasses();
     this.content.append(new AboutGame().render());
     this.app.append(new Header().render());
     this.app.append(this.content);

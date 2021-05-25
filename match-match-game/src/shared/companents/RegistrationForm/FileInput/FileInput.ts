@@ -2,6 +2,7 @@ import TagConstants from '../../../constants/tag.constants';
 import { IComponent } from '../../../interfaces';
 import './FileInput.scss';
 import avatar from '../../../../assets/img/form-avatar.svg';
+import { ClassesConstants } from '../../../constants/classes.constants';
 
 class FileInput implements IComponent {
   private fileInputContainer = document.createElement(TagConstants.DIV);
@@ -35,9 +36,9 @@ class FileInput implements IComponent {
   };
 
   private addClasses = () => {
-    this.fileInputContainer.classList.add('file-input-container');
-    this.fileInput.classList.add('file-input');
-    this.img.classList.add('file-input-img');
+    this.fileInputContainer.classList.add(ClassesConstants.FILE_INPUT_CONTAINER);
+    this.fileInput.classList.add(ClassesConstants.FILE_INPUT);
+    this.img.classList.add(ClassesConstants.FILE_INPUT_IMG);
   };
 
   private setAttributes = () => {

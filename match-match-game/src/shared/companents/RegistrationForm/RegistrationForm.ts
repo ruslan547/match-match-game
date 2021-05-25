@@ -12,6 +12,7 @@ import FileInput from './FileInput/FileInput';
 import FormButton from './FormButton/FormButton';
 import Input from './Input/Input';
 import './RegistrationForm.scss';
+import { ClassesConstants } from '../../constants/classes.constants';
 
 class RegistrationForm implements IComponent {
   private registrationForm = document.createElement(TagConstants.FORM);
@@ -81,10 +82,10 @@ class RegistrationForm implements IComponent {
   };
 
   private addClasses = () => {
-    this.registrationForm.classList.add('registration-form');
-    this.inutsContainer.classList.add('inputs-container');
-    this.fildsContainer.classList.add('filds-container');
-    this.buttonsContainer.classList.add('buttons-container');
+    this.registrationForm.classList.add(ClassesConstants.REGISTRATION_FORM);
+    this.inutsContainer.classList.add(ClassesConstants.INPUTS_CONTAINER);
+    this.fildsContainer.classList.add(ClassesConstants.FILDS_CONTAINER);
+    this.buttonsContainer.classList.add(ClassesConstants.BUTTONS_CONTAINER);
   };
 
   private addEventListeners = () => {

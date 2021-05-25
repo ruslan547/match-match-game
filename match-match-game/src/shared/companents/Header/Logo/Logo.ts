@@ -1,21 +1,32 @@
+import { ClassesConstants } from '../../../constants/classes.constants';
 import ContentConstants from '../../../constants/content.constants';
 import TagConstants from '../../../constants/tag.constants';
 import './Logo.scss';
 
 class Logo {
+  private logo = document.createElement(TagConstants.DIV);
+
+  private firstText = document.createElement(TagConstants.DIV);
+
+  private secondText = document.createElement(TagConstants.DIV);
+
+  private addClasses = () => {
+    this.logo.classList.add(ClassesConstants.LOGO);
+    this.firstText.classList.add(ClassesConstants.LOGO_FIRST_TEXT);
+    this.secondText.classList.add(ClassesConstants.LOGO_SECOND_TEXT);
+  };
+
+  private setAttributes = () => {
+    this.firstText.textContent = ContentConstants.LOGO;
+    this.secondText.textContent = ContentConstants.LOGO;
+  };
+
   render = () => {
-    const logo = document.createElement(TagConstants.DIV);
-    const firstText = document.createElement(TagConstants.DIV);
-    const secondText = document.createElement(TagConstants.DIV);
+    this.addClasses();
+    this.setAttributes();
+    this.logo.append(this.firstText, this.secondText);
 
-    logo.classList.add('logo');
-    firstText.textContent = ContentConstants.LOGO;
-    firstText.classList.add('logo__first-text');
-    secondText.textContent = ContentConstants.LOGO;
-    secondText.classList.add('logo__second-text');
-    logo.append(firstText, secondText);
-
-    return logo;
+    return this.logo;
   };
 }
 

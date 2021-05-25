@@ -18,7 +18,7 @@ export interface IState {
 
 export interface IUser {
   id?: number;
-  img: string | null;
+  img: string;
   firstName: string;
   lastName: string;
   email: string;

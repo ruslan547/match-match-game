@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../constants/classes.constants';
 import TagConstants from '../../constants/tag.constants';
 import { IComponent } from '../../interfaces';
 import './Popup.scss';
@@ -13,7 +14,7 @@ class Popup implements IComponent {
   };
 
   public render = () => {
-    this.popup.classList.add('popup');
+    this.popup.classList.add(ClassesConstants.POPUP);
     this.popup.append(this.element);
     this.popup.addEventListener('click', this.handleClick);
 

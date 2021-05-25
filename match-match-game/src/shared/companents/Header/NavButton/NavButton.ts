@@ -1,4 +1,5 @@
 import TagConstants from '../../../constants/tag.constants';
+import { ClassesConstants } from '../../../constants/classes.constants';
 import './NavButton.scss';
 
 interface NavButtonProp {
@@ -29,12 +30,11 @@ class NavLink {
   private addClasses = () => {
     const { href } = document.location;
 
-    this.navLinkTag.classList.add('nav-link');
-    this.imgTag.classList.add('nav-link__img');
-    this.textTag.classList.add('nav-link__text');
+    this.navLinkTag.classList.add(ClassesConstants.NAV_LINK);
+    this.imgTag.classList.add(ClassesConstants.NAV_LINK_IMG);
 
     if (href.includes(this.url)) {
-      this.navLinkTag.classList.add('active');
+      this.navLinkTag.classList.add(ClassesConstants.ACTIVE);
     }
   };
 

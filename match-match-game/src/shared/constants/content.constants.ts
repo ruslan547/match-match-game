@@ -24,7 +24,7 @@ enum ContentConstants {
   SELECT_CARDS_TYPE = 'select game cards type',
   SELECT_GAME_TYPE = 'select game type',
   EMPTY_FILLER = '',
-
+  SCORE = 'Score: ',
   ANIMALS = 'animals',
   CARS = 'cars',
   X4 = '4x4',

@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../../constants/classes.constants';
 import { ErrorConstants } from '../../../constants/error.constants';
 import { RegExpConstants } from '../../../constants/regexp.constants';
 import TagConstants from '../../../constants/tag.constants';
@@ -21,9 +22,9 @@ class Input implements IComponent {
   };
 
   private addClasses = () => {
-    this.element.classList.add('input-container');
-    this.input.classList.add('input');
-    this.checkbox.classList.add('checkbox');
+    this.element.classList.add(ClassesConstants.INPUT_CONTAINER);
+    this.input.classList.add(ClassesConstants.INPUT);
+    this.checkbox.classList.add(ClassesConstants.CHECKBOX);
   };
 
   private setAttributes = () => {
@@ -41,11 +42,11 @@ class Input implements IComponent {
   private handleInput = ({ target }: Event) => {
     if ((target as HTMLInputElement)?.validity.valid) {
       this.checkbox.checked = true;
-      this.element.classList.remove('invalid');
+      this.element.classList.remove(ClassesConstants.INVALID);
       this.alert.remove();
     } else {
       this.checkbox.checked = false;
-      this.element.classList.add('invalid');
+      this.element.classList.add(ClassesConstants.INVALID);
       this.input.after(this.alert);
     }
   };

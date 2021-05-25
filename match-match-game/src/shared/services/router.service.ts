@@ -1,4 +1,5 @@
 import NodeJS from 'process';
+import RouteConstants from '../constants/route.constants';
 
 type RoutePath = RegExp | string;
 
@@ -25,9 +26,9 @@ interface Router {
 class MainRouter implements Router {
   routes: Array<Route> = [];
 
-  mode = 'hash';
+  mode = RouteConstants.HASH as string;
 
-  root = '/';
+  root = RouteConstants.ROOT as string;
 
   intervalId;
 

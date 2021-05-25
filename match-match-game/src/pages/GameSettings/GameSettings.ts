@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../shared/constants/classes.constants';
 import { setCardsType, setDifficulty } from '../../shared/services/store/actions';
 import ContentConstants from '../../shared/constants/content.constants';
 import TagConstants from '../../shared/constants/tag.constants';
@@ -9,7 +10,7 @@ class GameSetting implements IComponent {
   private gameSetting = document.createElement(TagConstants.DIV);
 
   public render = () => {
-    this.gameSetting.classList.add('game-settings');
+    this.gameSetting.classList.add(ClassesConstants.GAME_SETTINGS);
 
     this.gameSetting.append(
       new Setting(

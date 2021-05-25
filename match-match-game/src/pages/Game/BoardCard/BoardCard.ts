@@ -1,3 +1,5 @@
+import { ClassesConstants } from '../../../shared/constants/classes.constants';
+import { PathConstants } from '../../../shared/constants/path.constants';
 import TagConstants from '../../../shared/constants/tag.constants';
 import { IComponent } from '../../../shared/interfaces';
 import { store } from '../../../shared/services/store/store.service';
@@ -13,16 +15,16 @@ class BoardCard implements IComponent {
   constructor(private cardNum: number) { }
 
   private addClasses = () => {
-    this.boardCard.classList.add('board-card');
-    this.frontCard.classList.add('front-card');
-    this.backCard.classList.add('back-card');
+    this.boardCard.classList.add(ClassesConstants.BOARD_CARD);
+    this.frontCard.classList.add(ClassesConstants.FRONT_CARD);
+    this.backCard.classList.add(ClassesConstants.BACK_CARD);
   };
 
   public render = () => {
     const { cardsType } = store.getState();
 
     this.addClasses();
-    this.frontCard.src = `/assets/${cardsType}/${this.cardNum}.jpg`;
+    this.frontCard.src = `${PathConstants.ASSETS}${cardsType}/${this.cardNum}${PathConstants.IMG_FORMAT}`;
     this.boardCard.append(this.backCard, this.frontCard);
 
     return this.boardCard;

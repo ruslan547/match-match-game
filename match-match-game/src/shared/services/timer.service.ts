@@ -1,4 +1,5 @@
 import NodeJS from 'process';
+import { NumberConstants } from '../constants/number.constatnts';
 import RouteConstants from '../constants/route.constants';
 import { setTime } from './store/actions';
 import { store } from './store/store.service';
@@ -21,7 +22,13 @@ class TimerService {
     });
   }
 
-  private calcTime = (date: number) => `${this.addZero(Math.floor(date / 60))}:${this.addZero(Math.floor(date % 60))}`;
+  private calcTime = (date: number) => {
+    const secondInMin = NumberConstants.SECOND_IN_MINUTE;
+    const minutes = this.addZero(Math.floor(date / secondInMin));
+    const secondes = this.addZero(Math.floor(date % secondInMin));
+
+    return `${minutes}:${secondes}`;
+  };
 
   private gemeTime = () => {
     this.timerId = setInterval(() => {

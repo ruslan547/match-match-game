@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../../constants/classes.constants';
 import { registerUser, setPage } from '../../../services/store/actions';
 import ContentConstants from '../../../constants/content.constants';
 import RouteConstants from '../../../constants/route.constants';
@@ -62,8 +63,8 @@ class HeaderButton implements IComponent {
   };
 
   private addClasses = () => {
-    this.button.classList.add('header-btn');
-    this.img.classList.add('header-btn-img');
+    this.button.classList.add(ClassesConstants.HEADER_BTN);
+    this.img.classList.add(ClassesConstants.HEADER_BTN_IMG);
   };
 
   public render = () => {

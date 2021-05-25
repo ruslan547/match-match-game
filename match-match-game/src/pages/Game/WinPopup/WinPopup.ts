@@ -1,3 +1,4 @@
+import { ClassesConstants } from '../../../shared/constants/classes.constants';
 import { store } from '../../../shared/services/store/store.service';
 import ContentConstants from '../../../shared/constants/content.constants';
 import RouteConstants from '../../../shared/constants/route.constants';
@@ -11,8 +12,8 @@ class WinPopup implements IComponent {
   private wipPopupLink = document.createElement(TagConstants.A);
 
   private addClasses = () => {
-    this.winPopup.classList.add('win-popup');
-    this.wipPopupLink.classList.add('win-popup-link');
+    this.winPopup.classList.add(ClassesConstants.WIN_POPUP);
+    this.wipPopupLink.classList.add(ClassesConstants.WIN_POPUP_LINK);
   };
 
   private setAttributes = () => {
@@ -23,7 +24,7 @@ class WinPopup implements IComponent {
   };
 
   private handleClick = () => {
-    const popup = document.querySelector('popup');
+    const popup = document.getElementsByName(ClassesConstants.POPUP)[0];
     popup?.remove();
   };
 
@@ -31,7 +32,6 @@ class WinPopup implements IComponent {
     this.addClasses();
     this.setAttributes();
     this.wipPopupLink.addEventListener('click', this.handleClick);
-
     this.winPopup.append(this.wipPopupLink);
 
     return this.winPopup;

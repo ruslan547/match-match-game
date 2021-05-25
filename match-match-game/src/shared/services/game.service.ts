@@ -4,6 +4,8 @@ import WinPopup from '../../pages/Game/WinPopup/WinPopup';
 import DbService from './db.service';
 import { popupService } from './popup.serivce';
 import TimerService from './timer.service';
+import { ClassesConstants } from '../constants/classes.constants';
+import { NumberConstants } from '../constants/number.constatnts';
 
 class GameService {
   private db = new DbService();
@@ -30,7 +32,7 @@ class GameService {
 
   private startGame = () => {
     const cards = document.querySelectorAll('.fliped');
-    cards.forEach((item) => item.classList.remove('fliped'));
+    cards.forEach((item) => item.classList.remove(ClassesConstants.FLIPED));
   };
 
   private clearFilds = () => {
@@ -38,21 +40,21 @@ class GameService {
   };
 
   private setToSuccess = (...elems: HTMLElement[]) => {
-    elems.forEach((item) => item.classList.add('succeed'));
+    elems.forEach((item) => item.classList.add(ClassesConstants.SUCCEED));
     this.succeeds.push(...elems);
   };
 
   private flipOver = (elem: HTMLElement) => {
-    elem.classList.add('fliped');
+    elem.classList.add(ClassesConstants.FLIPED);
   };
 
   private reset = (prev: HTMLElement, elem: HTMLElement) => {
-    prev.classList.add('error');
-    elem.classList.add('error');
+    prev.classList.add(ClassesConstants.ERROR);
+    elem.classList.add(ClassesConstants.ERROR);
 
     setTimeout(() => {
-      prev.classList.remove('error', 'fliped');
-      elem.classList.remove('error', 'fliped');
+      prev.classList.remove(ClassesConstants.ERROR, ClassesConstants.FLIPED);
+      elem.classList.remove(ClassesConstants.ERROR, ClassesConstants.FLIPED);
     }, 1000);
 
     this.clearFilds();
@@ -61,7 +63,9 @@ class GameService {
   private calcScore = () => {
     const cmp = this.cmpNum - this.errCmpNum;
     const seconds = this.timeService.getDate();
-    const score = cmp * 100 - seconds * 10;
+    const score = (
+      cmp * NumberConstants.FIRST_SCORE_COF - seconds * NumberConstants.SECOND_SCORE_COF
+    );
 
     return score < 0 ? 0 : score;
   };
@@ -89,7 +93,7 @@ class GameService {
   ) => prev.dataset.img === cur.dataset.img;
 
   public chooseElem = (elem: HTMLElement) => {
-    if (elem.classList.contains('fliped')) {
+    if (elem.classList.contains(ClassesConstants.FLIPED)) {
       return;
     }
 
