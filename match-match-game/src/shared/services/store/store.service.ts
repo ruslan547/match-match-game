@@ -7,12 +7,10 @@ import reducer from './reducer';
 const initialState = {
   page: RouteConstants.HASH_ABOUT,
   user: null,
-  // TO DO delete isG
-  isGame: false,
   isValidForm: false,
   cardsType: ContentConstants.ANIMALS,
   difficulty: ContentConstants.X4,
-  time: '00:00',
+  time: ContentConstants.EMPTY_FILLER,
 };
 
 const createStore = (rootReducer: Function, initState: IState) => {

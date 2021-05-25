@@ -47,10 +47,12 @@ class RegistrationForm implements IComponent {
   };
 
   private handleSubmit = async (event: Event) => {
+    const img: HTMLImageElement | null = document.querySelector('.file-input-img');
+
     event.preventDefault();
 
     const user = {
-      img: null,
+      img: img ? img.src : null,
       firstName: this.firstNameInput.getValue(),
       lastName: this.lastNameInput.getValue(),
       email: this.emailInput.getValue(),
@@ -74,7 +76,7 @@ class RegistrationForm implements IComponent {
 
     document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
       if (item.type !== TagConstants.SUBMIT) {
-        item.value = '';
+        item.value = ContentConstants.EMPTY_FILLER;
         item.checked = false;
       }
     });

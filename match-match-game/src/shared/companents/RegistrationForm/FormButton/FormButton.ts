@@ -3,6 +3,7 @@ import TagConstants from '../../../constants/tag.constants';
 import { IComponent } from '../../../interfaces';
 import { store } from '../../../services/store/store.service';
 import './FormButton.scss';
+import avatar from '../../../../assets/img/form-avatar.svg';
 
 class FormButton implements IComponent {
   private formButton = document.createElement(TagConstants.INPUT);
@@ -10,8 +11,11 @@ class FormButton implements IComponent {
   constructor(private value: string) { }
 
   private handleClick = (event: Event) => {
+    const img = document.querySelector('.file-input-img');
+
     if (this.value === ContentConstants.CANCEL) {
       event.preventDefault();
+      (img as HTMLImageElement).src = avatar;
 
       document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
         if (item.type !== TagConstants.SUBMIT) {

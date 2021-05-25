@@ -5,8 +5,6 @@ function reducer(state: IState, action: IAction) {
   switch (action.type) {
     case ActionConstants.SET_PAGE:
       return { ...state, page: action.payload };
-    case ActionConstants.SET_GAME:
-      return { ...state, isGame: !state.isGame };
     case ActionConstants.INPUT_DATE_INTO_FORM:
       return { ...state, isValidForm: action.payload };
     case ActionConstants.REGISTER_USER:

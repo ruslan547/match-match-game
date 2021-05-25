@@ -2,6 +2,7 @@ import { IAction, IComponent } from '../../../shared/interfaces';
 import TagConstants from '../../../shared/constants/tag.constants';
 import { store } from '../../../shared/services/store/store.service';
 import './Setting.scss';
+import ContentConstants from '../../../shared/constants/content.constants';
 
 class Setting implements IComponent {
   private setting = document.createElement(TagConstants.DIV);
@@ -12,6 +13,7 @@ class Setting implements IComponent {
 
   constructor(
     title: string,
+    private preview: string,
     private options: string[],
     private action: (payload: string) => IAction,
   ) {
@@ -26,15 +28,27 @@ class Setting implements IComponent {
     return option;
   });
 
+  private renderPrevOption = () => {
+    const option = document.createElement(TagConstants.OPTION);
+    option.value = ContentConstants.EMPTY_FILLER;
+    option.textContent = this.preview;
+
+    return option;
+  };
+
   private handleInput = () => {
     store.dispatch(this.action(this.select.value));
   };
 
-  public render = () => {
+  private addClasses = () => {
     this.setting.classList.add('setting');
     this.settingTitle.classList.add('setting-title');
+    this.select.classList.add('setting-select');
+  };
 
-    this.select.append(...this.renderOptions());
+  public render = () => {
+    this.addClasses();
+    this.select.append(this.renderPrevOption(), ...this.renderOptions());
     this.select.addEventListener('input', this.handleInput);
     this.setting.append(this.settingTitle, this.select);
 

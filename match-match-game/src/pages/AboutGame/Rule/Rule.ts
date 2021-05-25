@@ -5,11 +5,12 @@ import './Rule.scss';
 class Rule implements IComponent {
   private rule = document.createElement(TagConstants.LI);
 
-  constructor(private ruleDiscription: HTMLElement) { }
+  constructor(private ruleDiscription: HTMLElement, private img: HTMLImageElement) { }
 
   public render = () => {
     this.rule.classList.add('rule');
-    this.rule.append(this.ruleDiscription);
+
+    this.rule.append(this.ruleDiscription, this.img);
 
     return this.rule;
   };

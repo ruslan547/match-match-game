@@ -4,13 +4,12 @@ export interface IComponent {
 
 export interface IAction {
   type: string;
-  payload?: string | boolean | IUser;
+  payload?: string | boolean | IUser | null;
 }
 
 export interface IState {
   page: string;
   user: IUser | null;
-  isGame: boolean;
   isValidForm: boolean;
   cardsType: string;
   difficulty: string;

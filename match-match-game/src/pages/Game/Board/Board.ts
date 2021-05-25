@@ -15,8 +15,6 @@ class Board implements IComponent {
     const { difficulty } = store.getState();
 
     switch (difficulty) {
-      case ContentConstants.X4:
-        return 16;
       case ContentConstants.X6:
         return 36;
       case ContentConstants.X8:
@@ -55,7 +53,13 @@ class Board implements IComponent {
     this.gameService.setCardNum(n);
 
     for (let i = 0; i < n; i += 1) {
-      const cardNum = (i % 8) + 1;
+      const { difficulty } = store.getState();
+      let cardNum = (i % 8) + 1;
+
+      if (difficulty === ContentConstants.X6 && i > 32) {
+        cardNum = (i % 2) + 1;
+      }
+
       const card = new BoardCard(cardNum).render();
 
       card.classList.add('fliped');

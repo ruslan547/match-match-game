@@ -1,5 +1,6 @@
 import TagConstants from '../../../shared/constants/tag.constants';
 import { IComponent } from '../../../shared/interfaces';
+import { store } from '../../../shared/services/store/store.service';
 import './BoardCard.scss';
 
 class BoardCard implements IComponent {
@@ -18,8 +19,10 @@ class BoardCard implements IComponent {
   };
 
   public render = () => {
+    const { cardsType } = store.getState();
+
     this.addClasses();
-    this.frontCard.src = `/assets/${'animals'}/${this.cardNum}.jpg`;
+    this.frontCard.src = `/assets/${cardsType}/${this.cardNum}.jpg`;
     this.boardCard.append(this.backCard, this.frontCard);
 
     return this.boardCard;

@@ -3,6 +3,7 @@
 .header-btn {
   cursor: pointer;
   width: 207px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,4 +17,11 @@
   box-sizing: border-box;
   font-size: 14px;
   text-decoration: none;
+}
+
+.header-btn-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 30px;
 }

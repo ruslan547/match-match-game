@@ -14,11 +14,13 @@ class GameSetting implements IComponent {
     this.gameSetting.append(
       new Setting(
         ContentConstants.GAME_CARDS,
+        ContentConstants.SELECT_CARDS_TYPE,
         [ContentConstants.ANIMALS, ContentConstants.CARS],
         setCardsType,
       ).render(),
       new Setting(
         ContentConstants.DIFFICULTY,
+        ContentConstants.SELECT_GAME_TYPE,
         [ContentConstants.X4, ContentConstants.X6, ContentConstants.X8],
         setDifficulty,
       ).render(),

@@ -12,3 +12,18 @@
   box-sizing: border-box;
   margin-bottom: 30px;
 }
+
+.left-header-container {
+  width: 520px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-header-container {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

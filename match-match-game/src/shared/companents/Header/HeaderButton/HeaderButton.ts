@@ -1,4 +1,4 @@
-import { setPage } from '../../../services/store/actions';
+import { registerUser, setPage } from '../../../services/store/actions';
 import ContentConstants from '../../../constants/content.constants';
 import RouteConstants from '../../../constants/route.constants';
 import TagConstants from '../../../constants/tag.constants';
@@ -12,15 +12,23 @@ import './HeaderButton.scss';
 class HeaderButton implements IComponent {
   private button = document.createElement(TagConstants.A);
 
+  private img = document.createElement(TagConstants.IMG);
+
   private initBtn = () => {
     const { user, page } = store.getState();
 
-    if (!user) {
-      this.button.textContent = ContentConstants.REGISTER_NEW_PLAYER;
-    } else if (page === RouteConstants.HASH_GAME) {
-      this.button.textContent = ContentConstants.STOP_GAME;
+    if (user) {
+      this.img.src = user.img;
+      this.button.after(this.img);
+
+      if (page === RouteConstants.HASH_GAME) {
+        this.button.textContent = ContentConstants.STOP_GAME;
+      } else {
+        this.button.textContent = ContentConstants.START_GAME;
+      }
     } else {
-      this.button.textContent = ContentConstants.START_GAME;
+      this.button.textContent = ContentConstants.REGISTER_NEW_PLAYER;
+      this.img.remove();
     }
   };
 
@@ -48,10 +56,20 @@ class HeaderButton implements IComponent {
     }
   };
 
-  public render = () => {
+  private handleImgClick = () => {
+    store.dispatch(registerUser(null));
+  };
+
+  private addClasses = () => {
     this.button.classList.add('header-btn');
+    this.img.classList.add('header-btn-img');
+  };
+
+  public render = () => {
+    this.addClasses();
     this.initBtn();
     this.button.addEventListener('click', this.handleClick);
+    this.img.addEventListener('click', this.handleImgClick);
 
     store.subscribe(() => setTimeout(this.initBtn, 0));
 

@@ -38,19 +38,21 @@ class Input implements IComponent {
     this.alert.textContent = ErrorConstants.INVALID + this.name;
   };
 
+  private handleInput = ({ target }: Event) => {
+    if ((target as HTMLInputElement)?.validity.valid) {
+      this.checkbox.checked = true;
+      this.element.classList.remove('invalid');
+      this.alert.remove();
+    } else {
+      this.checkbox.checked = false;
+      this.element.classList.add('invalid');
+      this.input.after(this.alert);
+    }
+  };
+
   private addEventListeners = () => {
     this.checkbox.addEventListener('click', this.handleCheckboxClick);
-    this.input.addEventListener('input', ({ target }) => {
-      if ((target as HTMLInputElement)?.validity.valid) {
-        this.checkbox.checked = true;
-        this.element.classList.remove('invalid');
-        this.alert.remove();
-      } else {
-        this.checkbox.checked = false;
-        this.element.classList.add('invalid');
-        this.input.after(this.alert);
-      }
-    });
+    this.input.addEventListener('input', this.handleInput);
   };
 
   public getValue = () => this.input.value;

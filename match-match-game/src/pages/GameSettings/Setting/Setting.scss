@@ -2,10 +2,21 @@
 
 .setting {
   width: 250px;
-  height: 80px;
+  height: 100px;
   border-bottom: 3px solid $base-color;
+  background-color: $simple-color;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .setting-title {
   margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.setting-select {
+  width: 184px;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
