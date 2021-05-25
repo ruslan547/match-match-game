@@ -62,27 +62,32 @@ class MainRouter implements Router {
 
   clearSlashes = (path: RoutePath) => path
     .toString()
-    .replace(/\/$/, '')
-    .replace(/^\//, '');
+    .replace(/\/$/, RouteConstants.EMPTY_FILLER)
+    .replace(/^\//, RouteConstants.EMPTY_FILLER);
 
   getFragment = () => {
-    let fragment = '';
+    let fragment = RouteConstants.EMPTY_FILLER as string;
     if (this.mode === 'history') {
       fragment = this.clearSlashes(decodeURI(window.location.pathname + window.location.search));
-      fragment = fragment.replace(/\?(.*)$/, '');
-      fragment = this.root !== '/' ? fragment.replace(this.root, '') : fragment;
+      fragment = fragment.replace(/\?(.*)$/, RouteConstants.EMPTY_FILLER);
+      fragment = (this.root !== RouteConstants.ROOT)
+        ? fragment.replace(this.root, RouteConstants.EMPTY_FILLER) : fragment;
     } else {
       const match = window.location.href.match(/#(.*)$/);
-      fragment = match ? match[1] : '';
+      fragment = match ? match[1] : RouteConstants.EMPTY_FILLER;
     }
     return this.clearSlashes(fragment);
   };
 
-  navigate = (path = '') => {
+  navigate = (path = RouteConstants.EMPTY_FILLER) => {
     if (this.mode === 'history') {
-      window.history.pushState(null, '', this.root + this.clearSlashes(path));
+      window.history.pushState(
+        null,
+        RouteConstants.EMPTY_FILLER,
+        this.root + this.clearSlashes(path),
+      );
     } else {
-      window.location.href = `${window.location.href.replace(/#(.*)$/, '')}#${path}`;
+      window.location.href = `${window.location.href.replace(/#(.*)$/, RouteConstants.EMPTY_FILLER)}#${path}`;
     }
     return this;
   };

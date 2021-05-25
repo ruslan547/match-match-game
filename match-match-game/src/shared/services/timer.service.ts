@@ -7,7 +7,7 @@ import { store } from './store/store.service';
 class TimerService {
   private time;
 
-  private date: number = 10;
+  private date: number = 30;
 
   private timerId: NodeJS.Timeout | null = null;
 
