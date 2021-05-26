@@ -61,4 +61,5 @@ export enum ClassesConstants {
   SUCCEED = 'succeed',
   APP = 'app',
   CONTENT = 'content',
+  LOADING = 'loading',
 }

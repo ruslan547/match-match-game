@@ -12,9 +12,28 @@ import { NumberConstants } from '../../../shared/constants/number.constatnts';
 class BestPlayersList implements IComponent {
   private bestPlayersList = document.createElement(TagConstants.UL);
 
+  private loading = document.createElement(TagConstants.H2);
+
   private db = new DbService();
 
+  private curPage: string | null = null;
+
+  private curUser: IUser | null = null;
+
   private renderList = async () => {
+    const { page, user } = store.getState();
+
+    if (this.curPage === page && this.curUser === user) {
+      return;
+    }
+
+    this.curPage = page;
+    this.curUser = user;
+
+    if (!this.bestPlayersList.children.length) {
+      this.bestPlayersList.append(this.loading);
+    }
+
     await this.db.open(DbConstants.USERS);
     const data = this.db.getAll();
 
@@ -32,9 +51,15 @@ class BestPlayersList implements IComponent {
     }
   };
 
-  public render = () => {
-    this.renderList();
+  private addClasses = () => {
+    this.loading.classList.add(ClassesConstants.LOADING);
     this.bestPlayersList.classList.add(ClassesConstants.BEST_PLAYERS_LIST);
+  };
+
+  public render = () => {
+    this.addClasses();
+    this.loading.textContent = ContentConstants.LOADING;
+    this.renderList();
     store.subscribe(() => this.renderList());
 
     return this.bestPlayersList;

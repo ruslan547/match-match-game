@@ -16,7 +16,7 @@ class TimerService {
     this.prevTime();
 
     store.subscribe(() => {
-      if (store.getState().page !== RouteConstants.HASH_GAME) {
+      if (store.getState().page !== RouteConstants.GAME) {
         clearInterval(this.timerId as NodeJS.Timeout);
       }
     });

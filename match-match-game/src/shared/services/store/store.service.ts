@@ -5,7 +5,7 @@ import { init } from './actions';
 import reducer from './reducer';
 
 const initialState = {
-  page: RouteConstants.HASH_ABOUT,
+  page: RouteConstants.ABOUT,
   user: null,
   isValidForm: false,
   cardsType: ContentConstants.ANIMALS,

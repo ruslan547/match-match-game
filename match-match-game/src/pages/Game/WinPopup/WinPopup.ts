@@ -19,7 +19,7 @@ class WinPopup implements IComponent {
   private setAttributes = () => {
     this.winPopup.textContent = ContentConstants.WIP_POPUP_TEXT
       + store.getState().time + ContentConstants.MINUTES;
-    this.wipPopupLink.href = RouteConstants.HASH_BEST;
+    this.wipPopupLink.href = RouteConstants.BEST;
     this.wipPopupLink.textContent = ContentConstants.OK;
   };
 

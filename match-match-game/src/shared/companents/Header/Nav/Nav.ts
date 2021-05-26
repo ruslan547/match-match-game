@@ -12,13 +12,31 @@ import { store } from '../../../services/store/store.service';
 class Nav {
   private nav = document.createElement(TagConstants.UL);
 
+  private links = [
+    new NavLink({
+      text: ContentConstants.ABOUT_GAME,
+      img: about,
+      url: RouteConstants.ABOUT,
+    }).render(),
+    new NavLink({
+      text: ContentConstants.BEST_SCORE,
+      img: star,
+      url: RouteConstants.BEST,
+    }).render(),
+    new NavLink({
+      text: ContentConstants.GAME_SETTINGS,
+      img: setting,
+      url: RouteConstants.SETTINGS,
+    }).render(),
+  ];
+
   private activateLinks = () => {
     const { page } = store.getState();
 
-    Array.from(this.nav.children).forEach((item) => {
+    this.links.forEach((item) => {
       item.classList.remove(ClassesConstants.ACTIVE);
 
-      if ((item as HTMLLinkElement).href.includes(page)) {
+      if (item.dataset.page === page) {
         item.classList.add(ClassesConstants.ACTIVE);
       }
     });
@@ -27,23 +45,7 @@ class Nav {
   render = () => {
     this.nav.classList.add(ClassesConstants.NAV);
 
-    this.nav.append(
-      new NavLink({
-        text: ContentConstants.ABOUT_GAME,
-        img: about,
-        url: RouteConstants.HASH_ABOUT,
-      }).render(),
-      new NavLink({
-        text: ContentConstants.BEST_SCORE,
-        img: star,
-        url: RouteConstants.HASH_BEST,
-      }).render(),
-      new NavLink({
-        text: ContentConstants.GAME_SETTINGS,
-        img: setting,
-        url: RouteConstants.HASH_SETTINGS,
-      }).render(),
-    );
+    this.nav.append(...this.links);
 
     store.subscribe(() => {
       this.activateLinks();

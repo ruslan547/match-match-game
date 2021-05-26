@@ -1,11 +1,10 @@
+import { IUser, IComponent } from '../../../interfaces';
 import { ClassesConstants } from '../../../constants/classes.constants';
-import { registerUser, setPage } from '../../../services/store/actions';
+import { registerUser } from '../../../services/store/actions';
 import ContentConstants from '../../../constants/content.constants';
 import RouteConstants from '../../../constants/route.constants';
 import TagConstants from '../../../constants/tag.constants';
-import { IComponent } from '../../../interfaces';
 import { popupService } from '../../../services/popup.serivce';
-
 import { store } from '../../../services/store/store.service';
 import RegistrationForm from '../../RegistrationForm/RegistrationForm';
 import './HeaderButton.scss';
@@ -15,15 +14,26 @@ class HeaderButton implements IComponent {
 
   private img = document.createElement(TagConstants.IMG);
 
+  private curUser: IUser | null = null;
+
+  private curPage: string | null = null;
+
   private initBtn = () => {
     const { user, page } = store.getState();
+
+    if (this.curUser === user && this.curPage === page) {
+      return;
+    }
+
+    this.curUser = user;
+    this.curPage = page;
 
     if (user) {
       this.img.src = user.img;
       this.img.title = `${user.firstName} ${user.lastName}`;
       this.button.after(this.img);
 
-      if (page === RouteConstants.HASH_GAME) {
+      if (page === RouteConstants.GAME) {
         this.button.textContent = ContentConstants.STOP_GAME;
       } else {
         this.button.textContent = ContentConstants.START_GAME;
@@ -35,23 +45,21 @@ class HeaderButton implements IComponent {
   };
 
   private startGame = () => {
-    this.button.href = RouteConstants.HASH_GAME;
+    this.button.href = RouteConstants.GAME;
     this.button.click();
-    store.dispatch(setPage(RouteConstants.HASH_GAME));
   };
 
   private stopGame = () => {
-    this.button.href = RouteConstants.HASH_ABOUT;
+    this.button.href = RouteConstants.ABOUT;
     this.button.click();
   };
 
   private handleClick = () => {
-    const { user } = store.getState();
-    const { href } = document.location;
+    const { user, page } = store.getState();
 
     if (!user) {
       popupService.createPopup(new RegistrationForm().render());
-    } else if (href.includes(RouteConstants.HASH_GAME)) {
+    } else if (page === RouteConstants.GAME) {
       this.stopGame();
     } else {
       this.startGame();
@@ -60,6 +68,8 @@ class HeaderButton implements IComponent {
 
   private handleImgClick = () => {
     store.dispatch(registerUser(null));
+    this.stopGame();
+    popupService.removePopup();
   };
 
   private addClasses = () => {
@@ -73,7 +83,7 @@ class HeaderButton implements IComponent {
     this.button.addEventListener('click', this.handleClick);
     this.img.addEventListener('click', this.handleImgClick);
 
-    store.subscribe(() => setTimeout(this.initBtn, 0));
+    store.subscribe(() => this.initBtn());
 
     return this.button;
   };

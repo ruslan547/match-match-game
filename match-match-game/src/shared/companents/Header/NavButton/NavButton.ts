@@ -38,15 +38,16 @@ class NavLink {
     }
   };
 
-  private initElem = () => {
+  private setAttrebutes = () => {
     this.navLinkTag.href = this.url;
     this.imgTag.src = this.img;
     this.textTag.textContent = this.text;
+    this.navLinkTag.dataset.page = this.url;
   };
 
   render = () => {
     this.addClasses();
-    this.initElem();
+    this.setAttrebutes();
 
     this.navLinkTag.append(this.imgTag, this.textTag);
 

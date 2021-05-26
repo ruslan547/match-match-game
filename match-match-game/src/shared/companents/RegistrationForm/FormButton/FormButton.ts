@@ -31,7 +31,14 @@ class FormButton implements IComponent {
     if (this.value === ContentConstants.ADD_USER) {
       this.formButton.disabled = true;
       store.subscribe(() => {
-        this.formButton.disabled = !store.getState().isValidForm;
+        const { isValidForm } = store.getState();
+
+        this.formButton.classList.remove(ClassesConstants.INVALID);
+        this.formButton.disabled = !isValidForm;
+
+        if (!isValidForm) {
+          this.formButton.classList.add(ClassesConstants.INVALID);
+        }
       });
     }
 

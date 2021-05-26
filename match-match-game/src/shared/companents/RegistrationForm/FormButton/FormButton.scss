@@ -15,3 +15,7 @@
 .form-button:first-child {
   margin-right: 16px;
 }
+
+.invalid {
+  background-color: $lite-alert-color;
+}

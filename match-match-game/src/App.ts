@@ -40,29 +40,29 @@ class App implements IComponent {
   private initRouter = () => {
     new Router({
       mode: RouteConstants.HASH,
-      root: RouteConstants.HASH_ABOUT,
+      root: RouteConstants.ROOT,
     })
-      .add(RouteConstants.ABOUT, () => {
-        this.content?.firstChild?.replaceWith(new AboutGame().render());
-        store.dispatch(setPage(RouteConstants.HASH_ABOUT));
-      })
-      .add(RouteConstants.BEST, () => {
+      .add(RouteConstants.BEST_PATH, () => {
         this.content?.firstChild?.replaceWith(new BestScore().render());
-        store.dispatch(setPage(RouteConstants.HASH_BEST));
+        store.dispatch(setPage(RouteConstants.BEST));
       })
-      .add(RouteConstants.SETTINGS, () => {
+      .add(RouteConstants.SETTINGS_PATH, () => {
         this.content?.firstChild?.replaceWith(new GameSetting().render());
-        store.dispatch(setPage(RouteConstants.HASH_SETTINGS));
+        store.dispatch(setPage(RouteConstants.SETTINGS));
       })
-      .add(RouteConstants.GAME, () => {
+      .add(RouteConstants.GAME_PATH, () => {
         if (store.getState().user) {
           this.content?.firstChild?.replaceWith(new Game().render());
-          store.dispatch(setPage(RouteConstants.HASH_GAME));
+          store.dispatch(setPage(RouteConstants.GAME));
         } else {
           const link = document.createElement(TagConstants.A);
-          link.href = RouteConstants.HASH_ABOUT;
+          link.href = RouteConstants.ABOUT;
           link.click();
         }
+      })
+      .add(RouteConstants.ABOUT_PATH, () => {
+        this.content?.firstChild?.replaceWith(new AboutGame().render());
+        store.dispatch(setPage(RouteConstants.ABOUT));
       });
   };
 }

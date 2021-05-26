@@ -1,4 +1,3 @@
-import NodeJS from 'process';
 import RouteConstants from '../constants/route.constants';
 
 type RoutePath = RegExp | string;
@@ -11,22 +10,14 @@ interface Route {
 }
 
 interface RouterProp {
-  mode: string;
+  mode: string | null;
   root: string;
 }
 
-interface Router {
-  routes: Array<Route>;
-  mode: string;
-  root: string;
-  current: string;
-  intervalId: NodeJS.Timeout;
-}
-
-class MainRouter implements Router {
+class Router {
   routes: Array<Route> = [];
 
-  mode = RouteConstants.HASH as string;
+  mode: string | null = null;
 
   root = RouteConstants.ROOT as string;
 
@@ -116,4 +107,4 @@ class MainRouter implements Router {
   };
 }
 
-export default MainRouter;
+export default Router;

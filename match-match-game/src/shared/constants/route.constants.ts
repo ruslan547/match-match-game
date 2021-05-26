@@ -1,18 +1,20 @@
 enum RouteConstants {
   ROOT = '/',
-  ABOUT = 'about',
-  BEST = 'best',
-  SETTINGS = 'settings',
-  GAME = 'game',
   HASH = 'hash',
-  // HASH_ABOUT = '/#/about',
-  // HASH_BEST = '/#/best',
-  // HASH_SETTINGS = '/#/settings',
-  // HASH_GAME = '/#/game',
-  HASH_ABOUT = '/ruslan547-JSFE2021Q1/match-match-game/#/about',
-  HASH_BEST = '/ruslan547-JSFE2021Q1/match-match-game/#/best',
-  HASH_SETTINGS = '/ruslan547-JSFE2021Q1/match-match-game/#/settings',
-  HASH_GAME = '/ruslan547-JSFE2021Q1/match-match-game/#/game',
+  ABOUT_PATH = '',
+  BEST_PATH = 'best',
+  SETTINGS_PATH = 'settings',
+  GAME_PATH = 'game',
+
+  ABOUT = '/#/',
+  BEST = '/#/best',
+  SETTINGS = '/#/settings',
+  GAME = '/#/game',
+
+  // ABOUT = '/ruslan547-JSFE2021Q1/match-match-game/#/about',
+  // BEST = '/ruslan547-JSFE2021Q1/match-match-game/#/best',
+  // SETTINGS = '/ruslan547-JSFE2021Q1/match-match-game/#/settings',
+  // GAME = '/ruslan547-JSFE2021Q1/match-match-game/#/game',
   EMPTY_FILLER = '',
 }
 
