@@ -11,7 +11,7 @@ enum RouteConstants {
   SETTINGS = '/#/settings',
   GAME = '/#/game',
 
-  // ABOUT = '/ruslan547-JSFE2021Q1/match-match-game/#/about',
+  // ABOUT = '/ruslan547-JSFE2021Q1/match-match-game/#/',
   // BEST = '/ruslan547-JSFE2021Q1/match-match-game/#/best',
   // SETTINGS = '/ruslan547-JSFE2021Q1/match-match-game/#/settings',
   // GAME = '/ruslan547-JSFE2021Q1/match-match-game/#/game',
