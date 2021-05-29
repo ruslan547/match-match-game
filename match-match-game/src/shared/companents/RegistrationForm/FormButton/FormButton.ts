@@ -12,11 +12,13 @@ class FormButton implements IComponent {
   constructor(private value: string) { }
 
   private handleClick = (event: Event) => {
-    const img = document.getElementsByClassName(ClassesConstants.FILE_INPUT_IMG)[0];
+    const img = document.querySelector(`.${ClassesConstants.FILE_INPUT_IMG}`) as HTMLImageElement;
+    const fileInput = document.querySelector(`.${ClassesConstants.FILE_INPUT_CONTAINER}`) as HTMLDivElement;
 
     if (this.value === ContentConstants.CANCEL) {
       event.preventDefault();
-      (img as HTMLImageElement).src = avatar;
+      img.src = avatar;
+      fileInput.dataset.img = avatar;
 
       document.querySelectorAll(TagConstants.INPUT).forEach((item) => {
         if (item.type !== TagConstants.SUBMIT) {
