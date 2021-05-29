@@ -48,6 +48,8 @@ class BestPlayersList implements IComponent {
         this.bestPlayersList.append(...usersList);
         this.db.close();
       };
+    } else {
+      this.bestPlayersList.innerHTML = ContentConstants.EMPTY_FILLER;
     }
   };
 
