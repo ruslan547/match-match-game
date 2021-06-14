@@ -55,7 +55,7 @@ export enum ClassesConstants {
   INVALID = 'invalid',
   REGISTRATION_FORM = 'registration-form',
   INPUTS_CONTAINER = 'inputs-container',
-  FILDS_CONTAINER = 'filds-container',
+  FILDS_CONTAINER = 'fields-container',
   BUTTONS_CONTAINER = 'buttons-container',
   ERROR = 'error',
   SUCCEED = 'succeed',
