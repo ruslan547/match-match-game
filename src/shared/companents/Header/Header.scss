@@ -1,0 +1,28 @@
+@import '../../../index.scss';
+
+.header {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $main-color;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.left-header-container {
+  width: 520px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-header-container {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

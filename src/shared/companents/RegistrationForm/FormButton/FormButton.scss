@@ -1,0 +1,21 @@
+@import '../../../../index.scss';
+
+.form-button {
+  cursor: pointer;
+  width: 108px;
+  height: 36px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: $simple-color;
+  background-color: $main-color;
+}
+
+.form-button:first-child {
+  margin-right: 16px;
+}
+
+.invalid {
+  background-color: $lite-alert-color;
+}

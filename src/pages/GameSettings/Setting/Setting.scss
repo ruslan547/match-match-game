@@ -1,0 +1,23 @@
+@import '../../../index.scss';
+
+.setting {
+  width: 250px;
+  height: 100px;
+  background-color: $simple-color;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 1px 2px 10px $dark-color;
+  margin-bottom: 10px;
+}
+
+.setting-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.setting-select {
+  width: 184px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}

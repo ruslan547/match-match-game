@@ -1,0 +1,18 @@
+@import './index.scss';
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  min-width: 70%;
+  min-height: 802px;
+  justify-content: center;
+  background-color: $base-color;
+  padding: 36px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}

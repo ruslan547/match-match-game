@@ -1,0 +1,15 @@
+@import './../../../index.scss';
+
+.rule-description {
+  width: 360px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: $simple-color;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.rule-description-text {
+  width: 290px;
+}

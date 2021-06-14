@@ -1,0 +1,27 @@
+@import './../../../../index.scss';
+
+.input-container {
+  position: relative;
+  width: 328px;
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $base-color;
+  border-bottom: 1px solid $dark-color;
+  margin-bottom: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.input {
+  width: 285px;
+  background-color: transparent !important;
+  border: none;
+  outline: none;
+}
+
+.invalid {
+  border-color: $alert-color;
+  background-color: $lite-alert-color;
+}

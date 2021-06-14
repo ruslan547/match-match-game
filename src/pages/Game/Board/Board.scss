@@ -1,0 +1,17 @@
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.x4 {
+  width: 750px;
+}
+
+.x6 {
+  width: 1140px;
+}
+
+.x8 {
+  width: 1480px;
+}

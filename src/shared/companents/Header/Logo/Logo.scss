@@ -1,0 +1,15 @@
+@import '../../../../index.scss';
+
+.logo {
+  width: 80px;
+  text-align: center;
+
+  &__first-text {
+    color: $simple-color;
+  }
+
+  &__second-text {
+    color: $main-color;
+    background-color: $simple-color;
+  }
+}

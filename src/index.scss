@@ -1,0 +1,12 @@
+@import './shared/constants/styles.constants.scss';
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+}

@@ -1,0 +1,16 @@
+.file-input-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-input-img {
+  width: 198px;
+  height: 198px;
+  cursor: pointer;
+  border-radius: 50%;
+}

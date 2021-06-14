@@ -1,0 +1,33 @@
+@import './../../../index.scss';
+
+.registration-form {
+  width: 639px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $simple-color;
+  border-radius: 4px;
+  box-shadow: 0 0 10px $dark-color;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.fields-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs-container {
+  position: relative;
+  top: -40px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
